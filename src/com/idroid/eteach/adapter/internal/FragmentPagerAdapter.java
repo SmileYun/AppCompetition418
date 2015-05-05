@@ -12,9 +12,9 @@ import android.support.v4.app.FragmentManager;
  * @author SmileYun
  *
  */
-public abstract class PagerAdapter extends  android.support.v4.app.FragmentPagerAdapter/*FragmentStatePagerAdapter*/{
+public abstract class FragmentPagerAdapter extends  android.support.v4.app.FragmentPagerAdapter/*FragmentStatePagerAdapter*/{
 	
-	public PagerAdapter(FragmentManager fm) {
+	public FragmentPagerAdapter(FragmentManager fm) {
 		super(fm);
 	}
 
