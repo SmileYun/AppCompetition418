@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.idroid.eteach.R;
-import com.idroid.eteach.adapter.internal.PagerAdapter;
+import com.idroid.eteach.adapter.internal.FragmentPagerAdapter;
 import com.idroid.eteach.util.UIUtil;
 
 public class SlidingTabLayout extends HorizontalScrollView {
@@ -45,7 +45,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 	private int mTabHeight;
 
 	private ViewPager mViewPager;
-	private PagerAdapter mPagerAdapter;
+	private FragmentPagerAdapter mPagerAdapter;
 	private ViewPager.OnPageChangeListener mViewPagerPageChangeListener;
 
 	private LinearLayout mTitleLayout;
@@ -105,7 +105,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 		if (this.mViewPager != null)
 			this.mViewPager.setOnPageChangeListener(new InternalViewPagerListener());
 
-		mPagerAdapter = (PagerAdapter) mViewPager.getAdapter();
+		mPagerAdapter = (FragmentPagerAdapter) mViewPager.getAdapter();
 
 		mTabStrip = new SlidingTabStrip(getContext());
 		LayoutParams titleStripParams = (LayoutParams) mTabStrip.getLayoutParams();
