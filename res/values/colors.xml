@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <color name="colorPrimaryDark">#5677fc</color>
+     <color name="slidingTabLayout_background">#91a7ff</color>
+     <color name="slidingTabLayout_selectedColor">#5677fc</color>
+     
+</resources>
