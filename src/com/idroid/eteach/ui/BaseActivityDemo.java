@@ -1,25 +1,38 @@
 package com.idroid.eteach.ui;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.widget.Toast;
 
 import com.idroid.eteach.R;
 import com.idroid.eteach.adapter.AdapterDemo;
 import com.idroid.eteach.fragment.FragmentDemo;
 import com.idroid.eteach.ui.base.ActivityBase;
 
-public class BaseActivityDemo extends ActivityBase {
+public class BaseActivityDemo extends ActivityBase{
 
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		mViewPager.setAdapter(new AdapterDemo(getSupportFragmentManager(), initData()));
 		mViewPager.setCurrentItem(1);
 		mSlidingTabLayout.setViewPager(mViewPager);
+	}
+	
+	@Override
+	public void onAttachedToWindow() {
+		super.onAttachedToWindow();
 	}
 
 	private ArrayList<HashMap<String, Object>> initData() {
@@ -36,4 +49,9 @@ public class BaseActivityDemo extends ActivityBase {
 
 	int[] TabIcons = { R.drawable.abc_ic_menu_paste_mtrl_am_alpha, R.drawable.abc_ic_menu_share_mtrl_alpha,
 			R.drawable.abc_ic_menu_paste_mtrl_am_alpha, R.drawable.abc_ic_menu_moreoverflow_mtrl_alpha };
+
+	
+
+	
+
 }

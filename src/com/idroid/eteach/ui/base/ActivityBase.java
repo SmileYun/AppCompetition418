@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.view.View;
@@ -22,7 +23,7 @@ public class ActivityBase extends ActionBarActivity {
 	/**
      * The default system bar tint color value.
      */
-    public static final int DEFAULT_TINT_COLOR = 0xf991a7ff;
+    public static final int DEFAULT_TINT_COLOR = 0xfa91a7ff;
     
 	private ViewGroup mDecorViewGroup;
 	
@@ -36,6 +37,8 @@ public class ActivityBase extends ActionBarActivity {
 	 * 设置自定义Fragment
 	 */
 	protected ViewPager mViewPager;
+	
+	public SwipeRefreshLayout mSwipeRefreshLayout;
 
 	protected SlidingTabLayout mSlidingTabLayout;
 
@@ -51,9 +54,12 @@ public class ActivityBase extends ActionBarActivity {
 		mRoot = (ViewGroup) findViewById(R.id.root);
 		mContent = (ViewGroup) findViewById(R.id.content);
 		mContent.setBackgroundColor(Color.TRANSPARENT);
+		
 		View v = getLayoutInflater().inflate(R.layout.content, null);
+		mSwipeRefreshLayout = (SwipeRefreshLayout)v.findViewById(R.id.swipeLayout);
 		mViewPager = (ViewPager) v.findViewById(R.id.vp);
 		mSlidingTabLayout = (SlidingTabLayout) v.findViewById(R.id.sliding_tab_layout);
+		
 		setupStatusBarView(this, mDecorViewGroup);
 		setTranslucentStatus(true);
 		setContentView(v);
