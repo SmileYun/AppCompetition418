@@ -18,10 +18,8 @@ import com.idroid.eteach.adapter.AdapterDemo;
 import com.idroid.eteach.fragment.FragmentDemo;
 import com.idroid.eteach.ui.base.ActivityBase;
 
-public class BaseActivityDemo extends ActivityBase{
+public class BaseActivityDemo extends ActivityBase {
 
-
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,7 +27,7 @@ public class BaseActivityDemo extends ActivityBase{
 		mViewPager.setCurrentItem(1);
 		mSlidingTabLayout.setViewPager(mViewPager);
 	}
-	
+
 	@Override
 	public void onAttachedToWindow() {
 		super.onAttachedToWindow();
@@ -49,9 +47,4 @@ public class BaseActivityDemo extends ActivityBase{
 
 	int[] TabIcons = { R.drawable.abc_ic_menu_paste_mtrl_am_alpha, R.drawable.abc_ic_menu_share_mtrl_alpha,
 			R.drawable.abc_ic_menu_paste_mtrl_am_alpha, R.drawable.abc_ic_menu_moreoverflow_mtrl_alpha };
-
-	
-
-	
-
 }
