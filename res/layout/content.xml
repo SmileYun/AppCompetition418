@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/slidingTabLayout_background"
-        idroid:selectedColor="@color/colorPrimaryDark"/>
+        idroid:selectedColor="@color/colorPrimaryDark" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp"
