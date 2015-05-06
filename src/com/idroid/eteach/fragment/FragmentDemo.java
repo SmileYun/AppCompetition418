@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.idroid.eteach.R;
 import com.idroid.eteach.controller.ControllerDemo;
 import com.idroid.eteach.fragment.base.FragmentBase;
-import com.idroid.eteach.ui.BaseActivityDemo;
 import com.idroid.eteach.ui.base.ActivityBase;
 
 public class FragmentDemo extends FragmentBase implements OnClickListener, ControllerDemo.DemoUi, OnRefreshListener {
@@ -35,7 +34,6 @@ public class FragmentDemo extends FragmentBase implements OnClickListener, Contr
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		h = new MyHandler((ActivityBase) getActivity());
-		mSwipeRefreshLayout = ((BaseActivityDemo) getActivity()).mSwipeRefreshLayout;
 		mSwipeRefreshLayout.setColorSchemeColors(R.color.slidingTabLayout_background, R.color.slidingTabLayout_selectedColor);
 		mSwipeRefreshLayout.setOnRefreshListener(this);
 
@@ -46,11 +44,14 @@ public class FragmentDemo extends FragmentBase implements OnClickListener, Contr
 		View v = getActivity().getLayoutInflater().inflate(R.layout.page, null);
 		((TextView) v.findViewById(R.id.page)).setText("page" + i);
 		((TextView) v.findViewById(R.id.page)).setOnClickListener(this);
+		mSwipeRefreshLayout = (SwipeRefreshLayout)v.findViewById(R.id.swipeLayout);
 		return v;
 	}
 
+	View v;
 	@Override
 	public void onClick(View v) {
+		this.v = v;
 		((ControllerDemo) getController()).doOnclick(v);
 	}
 
@@ -78,8 +79,13 @@ public class FragmentDemo extends FragmentBase implements OnClickListener, Contr
 		public void handleMessage(Message msg) {
 			if (a.get() != null) {
 				mSwipeRefreshLayout.setRefreshing(false);
-				Toast.makeText(a.get(), "refresh complete!", 1).show();
+				((ControllerDemo) getController()).doRefresh();
 			}
 		}
+	}
+
+	@Override
+	public void refreshed(String result) {
+		((TextView) v.findViewById(R.id.page)).setText(result);
 	}
 }
