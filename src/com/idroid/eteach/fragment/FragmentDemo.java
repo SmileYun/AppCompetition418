@@ -48,8 +48,10 @@ public class FragmentDemo extends FragmentBase implements OnClickListener, Contr
 		return v;
 	}
 
+	View v;
 	@Override
 	public void onClick(View v) {
+		this.v = v;
 		((ControllerDemo) getController()).doOnclick(v);
 	}
 
@@ -81,6 +83,11 @@ public class FragmentDemo extends FragmentBase implements OnClickListener, Contr
 			}
 		}
 		
+	}
+
+	@Override
+	public void refreshed(String result) {
+		((TextView) v.findViewById(R.id.page)).setText(result);
 	}
 
 	@Override
