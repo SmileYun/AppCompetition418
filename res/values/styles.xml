@@ -18,14 +18,10 @@
     </style>
     <!-- "@android:style/Theme.NoTitleBar.Fullscreen" -->
     <style name="App.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">false</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowActionBarOverlay">false</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <!-- <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item> 
+        <item name="android:windowTranslucentStatus">true</item>-->
         <item name="android:fitsSystemWindows">true</item>
-        <item name="android:windowIsFloating" >true</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
 </resources>
