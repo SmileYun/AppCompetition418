@@ -38,20 +38,18 @@ public class FragmentDemo extends FragmentBase implements OnClickListener, Contr
 		mSwipeRefreshLayout.setOnRefreshListener(this);
 
 	}
-
+	View v;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = getActivity().getLayoutInflater().inflate(R.layout.page, null);
+		v = getActivity().getLayoutInflater().inflate(R.layout.page, null);
 		((TextView) v.findViewById(R.id.page)).setText("page" + i);
 		((TextView) v.findViewById(R.id.page)).setOnClickListener(this);
 		mSwipeRefreshLayout = (SwipeRefreshLayout)v.findViewById(R.id.swipeLayout);
 		return v;
 	}
 
-	View v;
 	@Override
 	public void onClick(View v) {
-		this.v = v;
 		((ControllerDemo) getController()).doOnclick(v);
 	}
 
@@ -82,6 +80,7 @@ public class FragmentDemo extends FragmentBase implements OnClickListener, Contr
 				((ControllerDemo) getController()).doRefresh();
 			}
 		}
+		
 	}
 
 	@Override
