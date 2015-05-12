@@ -8,10 +8,10 @@ import android.support.v4.app.FragmentManager;
 
 import com.idroid.eteach.adapter.internal.FragmentPagerAdapter;
 
-public class AdapterDemo extends FragmentPagerAdapter {
+public class FragmentPagerAdapterDemo extends FragmentPagerAdapter {
 	private ArrayList<HashMap<String, Object>> list;
 
-	public AdapterDemo(FragmentManager fm, ArrayList<HashMap<String, Object>> list) {
+	public FragmentPagerAdapterDemo(FragmentManager fm, ArrayList<HashMap<String, Object>> list) {
 		super(fm);
 		this.list = list;
 	}

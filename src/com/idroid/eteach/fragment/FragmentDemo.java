@@ -41,13 +41,15 @@ public class FragmentDemo extends FragmentBase implements OnClickListener, Contr
 	View v;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		v = getActivity().getLayoutInflater().inflate(R.layout.page, null);
+		v = getActivity().getLayoutInflater().inflate(R.layout.demo_page, null);
 		((TextView) v.findViewById(R.id.page)).setText("page" + i);
 		((TextView) v.findViewById(R.id.page)).setOnClickListener(this);
 		mSwipeRefreshLayout = (SwipeRefreshLayout)v.findViewById(R.id.swipeLayout);
 		return v;
 	}
 
+	
+	
 	@Override
 	public void onClick(View v) {
 		((ControllerDemo) getController()).doOnclick(v);

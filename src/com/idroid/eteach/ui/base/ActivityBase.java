@@ -58,7 +58,7 @@ public class ActivityBase extends ActionBarActivity {
 		mContent = (ViewGroup) findViewById(R.id.content);
 		mContent.setBackgroundColor(Color.TRANSPARENT);
 		
-		View v = getLayoutInflater().inflate(R.layout.content, null);
+		View v = getLayoutInflater().inflate(R.layout.demo_content, null);
 		
 		mViewPager = (ViewPager) v.findViewById(R.id.vp);
 		mViewPager.setPageTransformer(true, new DepthPageTransformer());

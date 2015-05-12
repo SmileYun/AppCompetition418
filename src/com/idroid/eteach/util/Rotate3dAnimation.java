@@ -68,7 +68,7 @@ public class Rotate3dAnimation extends Animation {
 		camera.rotateY(degrees);
 		camera.getMatrix(matrix);
 		camera.restore();
-		//yun
+		
 		matrix.preTranslate(-centerX, -centerY);
 		matrix.postTranslate(centerX, centerY);
 	}
