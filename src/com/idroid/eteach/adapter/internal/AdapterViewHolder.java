@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Õ®”√ViewHolder
+ */
 public class AdapterViewHolder {
 	private final SparseArray<View> mViews;
 	private View mConvertView;
@@ -50,6 +53,7 @@ public class AdapterViewHolder {
 	 * @param id
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public <T extends View> T getView(int id) {
 		View view = mViews.get(id);
 		if (view == null) {

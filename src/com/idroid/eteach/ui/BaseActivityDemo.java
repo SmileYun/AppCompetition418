@@ -1,24 +1,17 @@
 package com.idroid.eteach.ui;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.widget.Toast;
 
 import com.idroid.eteach.R;
 import com.idroid.eteach.adapter.FragmentPagerAdapterDemo;
 import com.idroid.eteach.fragment.FragmentDemo;
-import com.idroid.eteach.ui.base.ActivityBase;
+import com.idroid.eteach.ui.base.ActivityFrame;
 
-public class BaseActivityDemo extends ActivityBase {
+public class BaseActivityDemo extends ActivityFrame{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

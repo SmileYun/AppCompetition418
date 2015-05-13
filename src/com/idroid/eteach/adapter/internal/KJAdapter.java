@@ -42,6 +42,13 @@ public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListen
 		return mDatas.size();
 	}
 
+	public void refresh(Collection<T> datas) {
+		if (datas == null)
+			datas = new ArrayList<T>(0);
+		this.mDatas = datas;
+		notifyDataSetChanged();
+	}
+
 	@Override
 	public T getItem(int position) {
 		if (mDatas instanceof List)
