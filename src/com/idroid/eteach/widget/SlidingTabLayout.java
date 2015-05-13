@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 
 import com.idroid.eteach.R;
 import com.idroid.eteach.adapter.internal.FragmentPagerAdapter;
-import com.idroid.eteach.util.UIUtil;
+import com.idroid.eteach.util.UiUtils;
 
 public class SlidingTabLayout extends HorizontalScrollView {
 
@@ -75,8 +75,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
 		// UIUtil.dp2px(context, 7));
 
 		LayoutParams titleIconParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		titleIconParams.setMargins(UIUtil.dp2px(context, 3), UIUtil.dp2px(context, 7), UIUtil.dp2px(context, 2),
-				UIUtil.dp2px(context, 7));
+		titleIconParams.setMargins(UiUtils.dp2px(context, 3), UiUtils.dp2px(context, 7), UiUtils.dp2px(context, 2),
+				UiUtils.dp2px(context, 7));
 
 		mTitleLayout.addView(mIconLayout, titleIconParams);
 
@@ -88,7 +88,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
 		mSelectedBackground = a.getColor(R.styleable.SlidingTabLayout_selectedColor, -1);
 		mTabHeight = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_indicatorHeight,
-				UIUtil.dp2px(context, SlidingTabStrip.DEFAULT_INDICATOR_HEIGHT_DIPS));
+				UiUtils.dp2px(context, SlidingTabStrip.DEFAULT_INDICATOR_HEIGHT_DIPS));
 
 		// TODO: Set TabStrip
 
@@ -139,7 +139,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 		Context context = getContext();
 		ImageView v = new ImageView(context);
 		v.setBackgroundColor(INDICATOR_DEFAULT_BGCOLOR);
-		v.setPadding(UIUtil.dp2px(context, 3), UIUtil.dp2px(context, 9), UIUtil.dp2px(context, 3), UIUtil.dp2px(context, 9));
+		v.setPadding(UiUtils.dp2px(context, 3), UiUtils.dp2px(context, 9), UiUtils.dp2px(context, 3), UiUtils.dp2px(context, 9));
 		v.setImageDrawable(getResources().getDrawable(mPagerAdapter.getTabIndicatorIcon(position)));
 		return v;
 	}

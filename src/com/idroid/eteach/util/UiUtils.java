@@ -2,7 +2,7 @@ package com.idroid.eteach.util;
 
 import android.content.Context;
 
-public class UIUtil {
+public class UiUtils {
 
 	public static int px2dp(Context c, int value){
 		float density = c.getResources().getDisplayMetrics().density;
