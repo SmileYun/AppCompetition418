@@ -12,10 +12,9 @@ import android.support.v4.app.FragmentManager;
  * @author SmileYun
  *
  */
-public abstract class PagerAdapter extends  android.support.v4.app.FragmentPagerAdapter/*FragmentStatePagerAdapter*/{
+public abstract class PagerAdapter extends  android.support.v4.view.PagerAdapter/*FragmentStatePagerAdapter*/{
 	
-	public PagerAdapter(FragmentManager fm) {
-		super(fm);
+	public PagerAdapter() {
 	}
 
 	public abstract int getTabIndicatorIcon(int position);

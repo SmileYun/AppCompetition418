@@ -11,6 +11,10 @@ public class ControllerDemo extends BaseController {
 		void refreshed(String result);
 	}
 
+//	public ControllerDemo(){
+//		attachedUI(this);
+//	}
+	
 	public void doOnclick(View v) {
 		String res = "经过处理的Str";
 		((DemoUi) ui).updateTextView(v, res);

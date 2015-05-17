@@ -6,6 +6,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
@@ -13,18 +14,20 @@ import android.view.View;
 import android.view.View.AccessibilityDelegate;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.idroid.eteach.R;
 import com.idroid.eteach.controller.ControllerDemo;
+import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.base.FragmentBase;
 import com.idroid.eteach.ui.base.ActivityBase;
+import com.idroid.eteach.widget.DynamicViewPager;
 
 public class FragmentDemo extends FragmentBase implements OnClickListener, ControllerDemo.DemoUi, OnRefreshListener {
-	private int i;
-	private TextView tv;
-	
+	int i;
+
 	public FragmentDemo(int index) {
 		i = index;
 	}
@@ -33,24 +36,56 @@ public class FragmentDemo extends FragmentBase implements OnClickListener, Contr
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
 		h = new MyHandler((ActivityBase) getActivity());
-		mSwipeRefreshLayout
-				.setColorSchemeColors(R.color.slidingTabLayout_background, R.color.slidingTabLayout_selectedColor);
-		mSwipeRefreshLayout.setOnRefreshListener(this);
-
+		if (mSwipeRefreshLayout != null) {
+			mSwipeRefreshLayout.setColorSchemeColors(R.color.slidingTabLayout_background,
+					R.color.slidingTabLayout_selectedColor);
+			mSwipeRefreshLayout.setOnRefreshListener(this);
+		}
 	}
 
+	View v;
+	DynamicViewPager dy;
+	int[] imageLists = { R.drawable.bg_dredge_vip, R.drawable.bg_game_sso, R.drawable.bg_live_head_room };
+	
 	@Override
-	protected void initData() {
-	}
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		if (i == 3) {
+			v = getActivity().getLayoutInflater().inflate(R.layout.testdy, null);
+			dy = (DynamicViewPager) v.findViewById(R.id.testdy);
+			dy.setPagerAdapter(new PagerAdapter() {
+				
+				@Override
+				public boolean isViewFromObject(View arg0, Object arg1) {
+					// TODO Auto-generated method stub
+					return arg0 == arg1;
+				}
+				
+				@Override
+				public int getCount() {
+					return 3;
+				}
 
-	@Override
-	protected void initWidget(View v) {
-		tv = ((TextView) v.findViewById(R.id.page));
-		tv.setText("page" + i);
-		tv.setOnClickListener(this);
-		mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeLayout);
+				@Override
+				public void destroyItem(ViewGroup container, int position, Object object) {
+					container.removeView((View) object);
+				}
+
+				@Override
+				public Object instantiateItem(ViewGroup container, int position) {
+					View v = new ImageView(getActivity());
+					v.setBackgroundResource(imageLists[position]);
+					container.addView(v);
+					return v;
+				}
+			});
+		} else {
+			v = getActivity().getLayoutInflater().inflate(R.layout.demo_page, null);
+			((TextView) v.findViewById(R.id.page)).setText("page" + i);
+			((TextView) v.findViewById(R.id.page)).setOnClickListener(this);
+			mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeLayout);
+		}
+		return v;
 	}
 
 	@Override
@@ -90,11 +125,13 @@ public class FragmentDemo extends FragmentBase implements OnClickListener, Contr
 
 	@Override
 	public void refreshed(String result) {
-		tv.setText(result);
+		((TextView) v.findViewById(R.id.page)).setText(result);
 	}
 
 	@Override
-	protected View inflateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.demo_page, container);
+	protected BaseController getController() {
+		BaseController c = new ControllerDemo();
+		c.attachedUI(this);
+		return c;
 	}
 }
