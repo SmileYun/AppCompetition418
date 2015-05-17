@@ -5,14 +5,13 @@ import com.idroid.eteach.controller.base.BaseController;
 
 import android.support.v4.app.Fragment;
 
-public class FragmentBase extends Fragment{
-	protected BaseController mController = new ControllerDemo();
+public abstract class FragmentBase extends Fragment{
+	protected BaseController mController;
 	
+	@SuppressWarnings("unchecked")
 	public FragmentBase(){
-		mController.attachedUI(this);
+		getController().attachedUI(this);
 	}
 		
-	protected BaseController getController(){
-		return mController;
-	}
+	protected abstract <T extends BaseController> T getController();
 }
