@@ -22,34 +22,37 @@ import com.idroid.eteach.fragment.base.FragmentBase;
 import com.idroid.eteach.ui.base.ActivityBase;
 
 public class FragmentDemo extends FragmentBase implements OnClickListener, ControllerDemo.DemoUi, OnRefreshListener {
-	int i;
-
+	private int i;
+	private TextView tv;
+	
 	public FragmentDemo(int index) {
 		i = index;
 	}
 
 	private SwipeRefreshLayout mSwipeRefreshLayout;
-	
+
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		h = new MyHandler((ActivityBase) getActivity());
-		mSwipeRefreshLayout.setColorSchemeColors(R.color.slidingTabLayout_background, R.color.slidingTabLayout_selectedColor);
+		mSwipeRefreshLayout
+				.setColorSchemeColors(R.color.slidingTabLayout_background, R.color.slidingTabLayout_selectedColor);
 		mSwipeRefreshLayout.setOnRefreshListener(this);
 
 	}
-	View v;
+
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		v = getActivity().getLayoutInflater().inflate(R.layout.demo_page, null);
-		((TextView) v.findViewById(R.id.page)).setText("page" + i);
-		((TextView) v.findViewById(R.id.page)).setOnClickListener(this);
-		mSwipeRefreshLayout = (SwipeRefreshLayout)v.findViewById(R.id.swipeLayout);
-		return v;
+	protected void initData() {
 	}
 
-	
-	
+	@Override
+	protected void initWidget(View v) {
+		tv = ((TextView) v.findViewById(R.id.page));
+		tv.setText("page" + i);
+		tv.setOnClickListener(this);
+		mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeLayout);
+	}
+
 	@Override
 	public void onClick(View v) {
 		((ControllerDemo) getController()).doOnclick(v);
@@ -82,11 +85,16 @@ public class FragmentDemo extends FragmentBase implements OnClickListener, Contr
 				((ControllerDemo) getController()).doRefresh();
 			}
 		}
-		
+
 	}
 
 	@Override
 	public void refreshed(String result) {
-		((TextView) v.findViewById(R.id.page)).setText(result);
+		tv.setText(result);
+	}
+
+	@Override
+	protected View inflateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.demo_page, container);
 	}
 }
