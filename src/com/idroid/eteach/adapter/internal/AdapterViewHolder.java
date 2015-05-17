@@ -18,7 +18,7 @@ public class AdapterViewHolder {
 
 	private AdapterViewHolder(ViewGroup parent, int resId, int position) {
 		mViews = new SparseArray<View>();
-		mConvertView = LayoutInflater.from(parent.getContext()).inflate(resId, parent);
+		mConvertView = LayoutInflater.from(parent.getContext()).inflate(resId, parent, false);
 		this.mPosition = position;
 		mConvertView.setTag(this);
 	}
@@ -67,7 +67,7 @@ public class AdapterViewHolder {
 	 * 为TextView 设置内容
 	 */
 	public AdapterViewHolder setText(int id, String text) {
-		TextView tv = (TextView) mViews.get(id);
+		TextView tv = (TextView) getView(id);
 		tv.setText(text);
 		return this;
 	}
@@ -76,7 +76,7 @@ public class AdapterViewHolder {
 	 * 为ImageView 设置资源Id
 	 */
 	public AdapterViewHolder setImageResource(int id, int resourceId) {
-		ImageView iv = (ImageView) mViews.get(id);
+		ImageView iv = (ImageView) getView(id);
 		iv.setImageResource(resourceId);
 		return this;
 	}
@@ -85,7 +85,7 @@ public class AdapterViewHolder {
 	 * 为ImageView 设置Bitmap
 	 */
 	public AdapterViewHolder setImageBitmap(int id, Bitmap bm) {
-		ImageView iv = (ImageView) mViews.get(id);
+		ImageView iv = (ImageView)getView(id);
 		iv.setImageBitmap(bm);
 		return this;
 	}
