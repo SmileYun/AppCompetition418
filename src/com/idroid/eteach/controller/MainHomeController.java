@@ -1,11 +1,16 @@
 package com.idroid.eteach.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ImageView;
 
 import com.idroid.eteach.R;
+import com.idroid.eteach.adapter.MainHomeListViewAdapter;
 import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.MainHomeFragment;
 import com.idroid.eteach.fragment.base.FragmentBase;
@@ -44,7 +49,15 @@ public class MainHomeController extends BaseController<FragmentBase> {
 				return v;
 			}
 		});
+	}
+	
+	public void setListViewData(AbsListView listView, int ResId){
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+		for (int i = 0; i < 5; i++) {
+			HashMap<String, Object> m = new HashMap<String, Object>();
+			list.add(m);
+		}
 		
-		
+		((MainHomeFragment) ui).setListAdapter(new MainHomeListViewAdapter(listView, list, ResId));
 	}
 }

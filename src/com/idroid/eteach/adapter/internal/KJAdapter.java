@@ -34,6 +34,8 @@ public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListen
 		mInflater = LayoutInflater.from(listView.getContext());
 		if (datas == null)
 			mDatas = new ArrayList<T>(0);
+		else
+			mDatas = datas;
 		mListView.setOnScrollListener(this);
 	}
 
@@ -67,7 +69,9 @@ public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListen
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final AdapterViewHolder viewHolder = getViewHolder(position, convertView, parent);
+		
 		convert(viewHolder, getItem(position), isScrolling);
+		
 		return viewHolder.getConvertView();
 	}
 
