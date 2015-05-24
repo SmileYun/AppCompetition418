@@ -10,6 +10,7 @@ import com.idroid.eteach.R;
 import com.idroid.eteach.adapter.FragmentPagerAdapterDemo;
 import com.idroid.eteach.fragment.FragmentDemo;
 import com.idroid.eteach.fragment.MainHomeFragment;
+import com.idroid.eteach.fragment.StudentFragment;
 import com.idroid.eteach.fragment.TeacherFragment;
 import com.idroid.eteach.ui.base.ActivityFrame;
 
@@ -44,7 +45,13 @@ public class BaseActivityDemo extends ActivityFrame{
 		m2.put("icon", TabIcons[1]);
 		list.add(m2);
 		
-		for (int i = 2; i < 4; i++) {
+		HashMap<String, Object> m3 = new HashMap<String, Object>();
+		Fragment v3= new StudentFragment();
+		m3.put("content", v3);
+		m3.put("icon", TabIcons[2]);
+		list.add(m3);
+		
+		for (int i = 3; i < 4; i++) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			Fragment v = new FragmentDemo(i);
 			map.put("content", v);
