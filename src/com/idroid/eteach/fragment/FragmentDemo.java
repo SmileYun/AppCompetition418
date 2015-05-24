@@ -47,46 +47,6 @@ public class FragmentDemo extends FragmentBase implements OnClickListener, Contr
 	View v;
 	DynamicViewPager dy;
 	int[] imageLists = { R.drawable.bg_dredge_vip, R.drawable.bg_game_sso, R.drawable.bg_live_head_room };
-	
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		if (i == 3) {
-			v = getActivity().getLayoutInflater().inflate(R.layout.testdy, null);
-			dy = (DynamicViewPager) v.findViewById(R.id.testdy);
-			dy.setPagerAdapter(new PagerAdapter() {
-				
-				@Override
-				public boolean isViewFromObject(View arg0, Object arg1) {
-					// TODO Auto-generated method stub
-					return arg0 == arg1;
-				}
-				
-				@Override
-				public int getCount() {
-					return 3;
-				}
-
-				@Override
-				public void destroyItem(ViewGroup container, int position, Object object) {
-					container.removeView((View) object);
-				}
-
-				@Override
-				public Object instantiateItem(ViewGroup container, int position) {
-					View v = new ImageView(getActivity());
-					v.setBackgroundResource(imageLists[position]);
-					container.addView(v);
-					return v;
-				}
-			});
-		} else {
-			v = getActivity().getLayoutInflater().inflate(R.layout.demo_page, null);
-			((TextView) v.findViewById(R.id.page)).setText("page" + i);
-			((TextView) v.findViewById(R.id.page)).setOnClickListener(this);
-			mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeLayout);
-		}
-		return v;
-	}
 
 	@Override
 	public void onClick(View v) {
@@ -133,5 +93,59 @@ public class FragmentDemo extends FragmentBase implements OnClickListener, Contr
 		BaseController c = new ControllerDemo();
 		c.attachedUI(this);
 		return c;
+	}
+
+	@Override
+	protected void initData() {
+
+	}
+
+	@Override
+	protected void bindWidget(View v) {
+		if (i == 3) {
+			dy = (DynamicViewPager) v.findViewById(R.id.testdy);
+			dy.setPagerAdapter(new PagerAdapter() {
+
+				@Override
+				public boolean isViewFromObject(View arg0, Object arg1) {
+					// TODO Auto-generated method stub
+					return arg0 == arg1;
+				}
+
+				@Override
+				public int getCount() {
+					return 3;
+				}
+
+				@Override
+				public void destroyItem(ViewGroup container, int position, Object object) {
+					container.removeView((View) object);
+				}
+
+				@Override
+				public Object instantiateItem(ViewGroup container, int position) {
+					View v = new ImageView(getActivity());
+					v.setBackgroundResource(imageLists[position]);
+					container.addView(v);
+					return v;
+				}
+			});
+		} else {
+			((TextView) v.findViewById(R.id.page)).setText("page" + i);
+			((TextView) v.findViewById(R.id.page)).setOnClickListener(this);
+			mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeLayout);
+		}
+	}
+
+	@Override
+	protected View inflateLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View v = null;
+		if (i == 3) {
+			v = getActivity().getLayoutInflater().inflate(R.layout.testdy, null);
+
+		} else {
+			v = getActivity().getLayoutInflater().inflate(R.layout.demo_page, null);
+		}
+		return v;
 	}
 }

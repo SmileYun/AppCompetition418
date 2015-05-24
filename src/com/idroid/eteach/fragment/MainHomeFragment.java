@@ -16,6 +16,7 @@ import com.idroid.eteach.R;
 import com.idroid.eteach.adapter.internal.FragmentPagerAdapter;
 import com.idroid.eteach.adapter.internal.KJAdapter;
 import com.idroid.eteach.controller.MainHomeController;
+import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.base.FragmentBase;
 import com.idroid.eteach.widget.DynamicViewPager;
 
@@ -23,15 +24,6 @@ public class MainHomeFragment extends FragmentBase implements MainHomeController
 	private DynamicViewPager mViewPager;
 	private ListView mListView;
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_mainhome, container, false);
-		mViewPager = (DynamicViewPager) v.findViewById(R.id.viewpager);
-		mListView = (ListView) v.findViewById(R.id.listview);
-		LayoutParams p =new LayoutParams(LayoutParams.MATCH_PARENT, 300);
-		mListView.setLayoutParams(p);
-		return v;
-	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -69,5 +61,24 @@ public class MainHomeFragment extends FragmentBase implements MainHomeController
 	
 	public void setListAdapter(KJAdapter<HashMap<String, Object>> adapter){
 		mListView.setAdapter(adapter);
+	}
+
+
+	@Override
+	protected void initData() {
+		
+	}
+
+	@Override
+	protected void bindWidget(View v) {
+		mViewPager = (DynamicViewPager) v.findViewById(R.id.viewpager);
+		mListView = (ListView) v.findViewById(R.id.listview);
+		LayoutParams p =new LayoutParams(LayoutParams.MATCH_PARENT, 300);
+		mListView.setLayoutParams(p);
+	}
+
+	@Override
+	protected View inflateLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.fragment_mainhome, container, false);
 	}
 }
