@@ -18,6 +18,7 @@ public class FragmentPagerAdapterDemo extends FragmentPagerAdapter {
 
 	@Override
 	public int getTabIndicatorIcon(int position) {
+		System.out.println("--->" + list.get(position));
 		return (Integer) list.get(position).get("icon");
 	}
 

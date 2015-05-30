@@ -3,6 +3,7 @@ package com.idroid.eteach.widget;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.R.integer;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -79,7 +80,7 @@ public class DynamicViewPager extends FrameLayout implements OnPageChangeListene
 	private void adapterSet() {
 		PagerAdapter adapter = mViewPager.getAdapter();
 		dotCount = adapter.getCount();
-		int spacing = UiUtils.getScreenWidth(getContext())/24;
+		int spacing = UiUtils.getScreenWidth(getContext())/25;
 		int leftMargin = UiUtils.getScreenWidth(getContext()) / 9 * 7 + spacing;
 		int topMargin = (UiUtils.getScreenHeight(getContext()) >> 4) / 4 * 3;
 
@@ -109,7 +110,7 @@ public class DynamicViewPager extends FrameLayout implements OnPageChangeListene
 	public class DotView extends View {
 		private int mColor;
 		private Paint mPaint;
-		private final int DEFAULTRADIUS ;
+		private final int DEFAULTRADIUS;
 		private int mRadius = -1;
 		private int x, y;
 
