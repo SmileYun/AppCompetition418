@@ -79,13 +79,14 @@ public class DynamicViewPager extends FrameLayout implements OnPageChangeListene
 	private void adapterSet() {
 		PagerAdapter adapter = mViewPager.getAdapter();
 		dotCount = adapter.getCount();
-		int leftMargin = UiUtils.getScreenWidth(getContext()) / 9 * 7 + 33;
+		int spacing = UiUtils.getScreenWidth(getContext())/24;
+		int leftMargin = UiUtils.getScreenWidth(getContext()) / 9 * 7 + spacing;
 		int topMargin = (UiUtils.getScreenHeight(getContext()) >> 4) / 4 * 3;
 
 		for (int i = 0; i < dotCount; i++) {
 			DotView v = new DotView(getContext());
 			v.setColor(Color.CYAN);
-			v.setPosition(leftMargin + i * (v.getRadius() + 33), topMargin - v.getRadius() / 2);
+			v.setPosition(leftMargin + i * (v.getRadius() + spacing), topMargin - v.getRadius() / 2);
 			mIndicator.addView(v);
 		}
 		
@@ -108,12 +109,13 @@ public class DynamicViewPager extends FrameLayout implements OnPageChangeListene
 	public class DotView extends View {
 		private int mColor;
 		private Paint mPaint;
-		private final int DEFAULTRADIUS = 10;
+		private final int DEFAULTRADIUS ;
 		private int mRadius = -1;
 		private int x, y;
 
 		public DotView(Context context) {
 			super(context);
+			DEFAULTRADIUS = UiUtils.getScreenWidth(context)/80;
 			mPaint = new Paint();
 			mPaint.setAntiAlias(true);
 

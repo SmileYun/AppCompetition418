@@ -60,6 +60,11 @@ public class ActivityBase extends ActionBarActivity {
 		FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mContent.addView(v, p);
 	}
+	
+	public void setContentView(int resId) {
+		FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		mContent.addView(getLayoutInflater().inflate(resId, null));
+	}
 
 	private void setupStatusBarView(Context context, ViewGroup decorViewGroup) {
 		mStatusBarTintView = new View(context);
