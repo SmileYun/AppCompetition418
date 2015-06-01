@@ -31,4 +31,6 @@ public class StudentController extends BaseController<FragmentBase> {
 		((StudentFragment)ui).setListAdapter(new StudentAdapter(listView, list, ResId));
 	}
 	
+	
+	
 }
