@@ -26,8 +26,6 @@ public class MyInformationController extends BaseController<FragmentBase> {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		list.add(map);
 
-		((MyInformationFragment) ui).setListAdapter(new MyInformationAdapter(
-				listView, list, ResId));
+		((MyInformationFragment) ui).setListAdapter(new MyInformationAdapter(listView, list, ResId));
 	}
-
 }

@@ -15,18 +15,16 @@ import com.idroid.eteach.controller.TeacherController;
 import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.base.FragmentBase;
 
-
-
 public class MyInformationFragment extends FragmentBase implements MyInformationController.UI {
 
 	private MyInformationController mController;
 	private ListView mListView;
-	
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		mController = getController();
-//		mController.setListViewData(mListView, R.layout.item_teacher);
+		// mController.setListViewData(mListView, R.layout.item_teacher);
 	}
 
 	@Override
@@ -43,23 +41,22 @@ public class MyInformationFragment extends FragmentBase implements MyInformation
 
 	@Override
 	protected void bindWidget(View v) {
-//		mListView = (ListView) v.findViewById(R.id.ilv_listview);
+		// mListView = (ListView) v.findViewById(R.id.ilv_listview);
 	}
 
 	/**
 	 * 初始化布局文件
 	 */
 	@Override
-	protected View inflateLayout(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	protected View inflateLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.fragment_user_information, container, false);
 	}
-	
+
 	/**
 	 * 设置LisetView的数据适配
 	 */
 	public void setListAdapter(KJAdapter<HashMap<String, Object>> adapter) {
-//		mListView.setAdapter(adapter);
+		// mListView.setAdapter(adapter);
 	}
 
 }
