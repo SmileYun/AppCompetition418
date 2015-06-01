@@ -12,7 +12,7 @@ public abstract class BaseController<U> {
 		this.ui = ui;
 	}
 	
-	protected abstract void initialized();
+	public abstract void initialized();
 	
 	public Context getContext(){
 		if(ui instanceof ActivityBase)

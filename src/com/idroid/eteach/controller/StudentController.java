@@ -48,7 +48,7 @@ public class StudentController extends BaseController<FragmentBase> implements O
 	}
 
 	@Override
-	protected void initialized() {
+	public void initialized() {
 		
 	}
 	

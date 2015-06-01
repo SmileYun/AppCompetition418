@@ -5,7 +5,7 @@ import com.idroid.eteach.controller.base.BaseController;
 public class DetailFragmentItemController extends BaseController<DetailFragmentItemController>{
 
 	@Override
-	protected void initialized() {
+	public void initialized() {
 	}
 	
 	

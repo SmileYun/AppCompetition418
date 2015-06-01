@@ -26,7 +26,7 @@ public class ControllerDemo extends BaseController<ControllerDemo> {
 	}
 
 	@Override
-	protected void initialized() {
+	public void initialized() {
 		
 	}
 }

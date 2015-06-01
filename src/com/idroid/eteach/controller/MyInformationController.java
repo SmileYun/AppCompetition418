@@ -30,7 +30,7 @@ public class MyInformationController extends BaseController<FragmentBase> {
 	}
 
 	@Override
-	protected void initialized() {
+	public void initialized() {
 		
 	}
 }
