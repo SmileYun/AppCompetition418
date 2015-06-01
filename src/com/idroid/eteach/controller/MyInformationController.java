@@ -28,4 +28,9 @@ public class MyInformationController extends BaseController<FragmentBase> {
 
 		((MyInformationFragment) ui).setListAdapter(new MyInformationAdapter(listView, list, ResId));
 	}
+
+	@Override
+	protected void initialized() {
+		
+	}
 }

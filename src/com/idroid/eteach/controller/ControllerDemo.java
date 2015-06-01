@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.idroid.eteach.controller.base.BaseController;
 
-public class ControllerDemo extends BaseController {
+public class ControllerDemo extends BaseController<ControllerDemo> {
 
 	public interface DemoUi {
 		void updateTextView(View v, String result);
@@ -23,5 +23,10 @@ public class ControllerDemo extends BaseController {
 	public void doRefresh() {
 		String res = "Refresh Complete!";
 		((DemoUi) ui).refreshed(res);
+	}
+
+	@Override
+	protected void initialized() {
+		
 	}
 }

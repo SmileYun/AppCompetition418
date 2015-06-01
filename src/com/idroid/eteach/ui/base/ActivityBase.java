@@ -18,6 +18,7 @@ import android.widget.FrameLayout.LayoutParams;
 
 import com.idroid.eteach.R;
 import com.idroid.eteach.app.ActivityStackManager;
+import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.base.FragmentBase;
 import com.idroid.eteach.util.SystemBarConfig;
 
@@ -46,6 +47,10 @@ public class ActivityBase extends ActionBarActivity {
 		initView();
 	}
 
+	protected <T extends BaseController> T getController(){
+		return null;
+	}
+	
 	private void initView() {
 		mDecorViewGroup = (ViewGroup) getWindow().getDecorView();
 		mRoot = (ViewGroup) findViewById(R.id.root);

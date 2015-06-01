@@ -58,7 +58,7 @@ public class SplashActivity extends Activity {
 				overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
 				finish();
 			}
-		}, 2500);
+		}, 1200);
 	}
     
 

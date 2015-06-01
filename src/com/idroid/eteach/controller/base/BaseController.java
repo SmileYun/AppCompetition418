@@ -5,12 +5,14 @@ import com.idroid.eteach.ui.base.ActivityBase;
 
 import android.content.Context;
 
-public class BaseController<U> {
+public abstract class BaseController<U> {
 	protected U ui;
 	
 	public void attachedUI(U ui){
 		this.ui = ui;
 	}
+	
+	protected abstract void initialized();
 	
 	public Context getContext(){
 		if(ui instanceof ActivityBase)

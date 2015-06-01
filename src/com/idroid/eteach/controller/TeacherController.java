@@ -43,5 +43,10 @@ public class TeacherController extends BaseController<FragmentBase> implements O
 		Intent intent = new Intent(getContext(), ContactActivity.class);
 		getContext().startActivity(intent);
 	}
+
+	@Override
+	protected void initialized() {
+		
+	}
 	
 }
