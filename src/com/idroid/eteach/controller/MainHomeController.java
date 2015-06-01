@@ -3,7 +3,6 @@ package com.idroid.eteach.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,9 +12,9 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.idroid.eteach.R;
-import com.idroid.eteach.activity.ContactActivity;
 import com.idroid.eteach.adapter.MainHomeListViewAdapter;
 import com.idroid.eteach.adapter.internal.KJAdapter;
 import com.idroid.eteach.controller.base.BaseController;
@@ -67,21 +66,19 @@ public class MainHomeController extends BaseController<FragmentBase> implements 
 		}
 		
 		adapter = new MainHomeListViewAdapter(listView, list, resId);
-		adapter.setViewClickListener(R.id.list_item_tv, this);
-		adapter.setOnItemClickListener(this);
-		
-		
+		adapter.setViewClickListener(R.id.item_like_img, this);
+		adapter.setItemClickListener(this);
 		((MainHomeFragment) ui).setListAdapter(adapter);
 	}
 
 	@Override
 	public void onClick(View v) {
-		
+		Toast.makeText(getContext(), "like", 0).show();
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		Toast.makeText(getContext(), "item", 0).show();
 	}
 	
 	
