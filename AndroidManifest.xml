@@ -24,6 +24,8 @@
         </activity>
         <activity android:name="com.idroid.eteach.ui.BaseActivityDemo" >
         </activity>
+        <activity android:name="com.idroid.eteach.activity.ContactActivity" >
+        </activity>
     </application>
 
 </manifest>

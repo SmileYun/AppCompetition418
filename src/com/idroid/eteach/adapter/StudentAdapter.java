@@ -27,5 +27,7 @@ public class StudentAdapter extends KJAdapter<HashMap<String, Object>> {
 		helper.setText(R.id.itv_student_class, "数学");
 		helper.setText(R.id.itv_student_addr, "重庆市南岸区黄桷垭");
 	}
+	
+	
 
 }

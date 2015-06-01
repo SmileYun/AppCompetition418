@@ -31,7 +31,8 @@ public class MainHomeFragment extends FragmentBase implements MainHomeController
 		super.onActivityCreated(savedInstanceState);
 		mController = getController();
 		mController.initialized();
-		mController.setListViewData(mListView, R.layout.listview_item_home);
+//		mController.setListViewData(mListView, R.layout.listview_item_home);
+		mController.setListViewData(mListView, R.layout.listview_item_home_small);
 	}
 
 	@Override
@@ -75,8 +76,8 @@ public class MainHomeFragment extends FragmentBase implements MainHomeController
 	protected void bindWidget(View v) {
 		mViewPager = (DynamicViewPager) v.findViewById(R.id.viewpager);
 		mListView = (ListView) v.findViewById(R.id.listview);
-		LayoutParams p =new LayoutParams(LayoutParams.MATCH_PARENT, 300);
-		mListView.setLayoutParams(p);
+//		LayoutParams p =new LayoutParams(LayoutParams.MATCH_PARENT, 300);
+//		mListView.setLayoutParams(p);
 	}
 
 	@Override

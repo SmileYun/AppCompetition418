@@ -3,15 +3,23 @@ package com.idroid.eteach.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.content.Intent;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 
+import com.idroid.eteach.R;
+import com.idroid.eteach.activity.ContactActivity;
 import com.idroid.eteach.adapter.TeacherAdapter;
+import com.idroid.eteach.adapter.internal.KJAdapter;
 import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.TeacherFragment;
 import com.idroid.eteach.fragment.base.FragmentBase;
 
-public class TeacherController extends BaseController<FragmentBase> {
+public class TeacherController extends BaseController<FragmentBase> implements OnClickListener {
 
+	private KJAdapter<HashMap<String,Object>> adapter;
+	
 	public interface UI{
 		
 	}
@@ -25,8 +33,20 @@ public class TeacherController extends BaseController<FragmentBase> {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			list.add(map);
 		}
+		adapter = new TeacherAdapter(listView, list, ResId);
+		((TeacherFragment)ui).setListAdapter(adapter);
+		adapter.setViewClickListener(R.id.ibtn_teacher_contact, this);
+	}
+
+	@Override
+	public void onClick(View v) {
+		Intent intent = new Intent(getContext(), ContactActivity.class);
+		getContext().startActivity(intent);
+	}
+
+	@Override
+	public void initialized() {
 		
-		((TeacherFragment)ui).setListAdapter(new TeacherAdapter(listView, list, ResId));
 	}
 	
 }
