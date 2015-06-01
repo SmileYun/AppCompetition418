@@ -1,5 +1,8 @@
 package com.idroid.eteach.controller.base;
 
+import com.idroid.eteach.fragment.base.FragmentBase;
+import com.idroid.eteach.ui.base.ActivityBase;
+
 import android.content.Context;
 
 public class BaseController<U> {
@@ -10,8 +13,10 @@ public class BaseController<U> {
 	}
 	
 	public Context getContext(){
-		if(ui instanceof Context)
+		if(ui instanceof ActivityBase)
 			return (Context) ui;
+		else if(ui instanceof FragmentBase)
+			return ((FragmentBase) ui).getActivity();
 		return null;
 	}
 }

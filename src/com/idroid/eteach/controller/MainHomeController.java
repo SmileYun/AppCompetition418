@@ -9,7 +9,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.idroid.eteach.R;
 import com.idroid.eteach.adapter.MainHomeListViewAdapter;
@@ -18,7 +21,7 @@ import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.MainHomeFragment;
 import com.idroid.eteach.fragment.base.FragmentBase;
 
-public class MainHomeController extends BaseController<FragmentBase> implements OnClickListener{
+public class MainHomeController extends BaseController<FragmentBase> implements OnClickListener, OnItemClickListener{
 	
 	public interface UI{
 		
@@ -63,14 +66,19 @@ public class MainHomeController extends BaseController<FragmentBase> implements 
 		}
 		
 		adapter = new MainHomeListViewAdapter(listView, list, resId);
-		adapter.setViewClickListener(R.id.list_item_tv, this);
-		
+		adapter.setViewClickListener(R.id.item_like_img, this);
+		adapter.setItemClickListener(this);
 		((MainHomeFragment) ui).setListAdapter(adapter);
 	}
 
 	@Override
 	public void onClick(View v) {
-		adapter.notifyDataSetChanged();
+		Toast.makeText(getContext(), "like", 1).show();
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		Toast.makeText(getContext(), "item", 1).show();
 	}
 	
 	

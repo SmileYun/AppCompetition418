@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,8 +34,7 @@ public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListen
 	protected boolean isScrolling;
 	protected AdapterViewHolder viewHolder;
 
-	private AbsListView.OnScrollListener listener;
-	private OnClickListener viewListener;
+	private AbsListView.OnScrollListener scrollListener;
 	private OnItemClickListener itemClickListener;
 	private OnItemLongClickListener itemLongClickListener;
 	private OnItemSelectedListener itemSelectedListener;
@@ -83,9 +83,11 @@ public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListen
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		viewHolder = getViewHolder(position, convertView, parent);
-
+		
 		convert(viewHolder, getItem(position), isScrolling);
-
+		
+		bindListener(viewHolder);
+		
 		return viewHolder.getConvertView();
 	}
 
@@ -104,20 +106,20 @@ public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListen
 		} else {
 			isScrolling = true;
 		}
-		if (listener != null) {
-			listener.onScrollStateChanged(view, scrollState);
+		if (scrollListener != null) {
+			scrollListener.onScrollStateChanged(view, scrollState);
 		}
 	}
 
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-		if (listener != null) {
-			listener.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
+		if (scrollListener != null) {
+			scrollListener.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
 		}
 	}
 
 	public void setOnScrollListener(AbsListView.OnScrollListener listener) {
-		this.listener = listener;
+		this.scrollListener = listener;
 	}
 
 	public void setOnItemClickListener(OnItemClickListener listener) {
@@ -160,21 +162,29 @@ public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListen
 
 	@Override
 	public void onClick(View v) {
-		if (viewListener != null)
-			viewListener.onClick(v);
+		listeners.get(v.getId()).onClick(v);
 	}
 	
 	/**
 	 * Œ™View …Ë÷√ClickListener
 	 */
 	public void setViewClickListener(int id, OnClickListener listener) {
-		View iv = viewHolder.getView(id);
-		iv.setOnClickListener(this);
+		listeners.append(id, listener);
+	}
+	
+	private SparseArray<OnClickListener> listeners = new SparseArray<OnClickListener>();
+	
+	private void bindListener(AdapterViewHolder viewHolder) {
+		for(int i = 0; i< listeners.size(); i++){
+			int id = listeners.keyAt(i);
+			View iv = viewHolder.getView(id);
+			iv.setOnClickListener(listeners.get(id));
+		}
 	}
 
 
-	public void setListener(AbsListView.OnScrollListener listener) {
-		this.listener = listener;
+	public void setScrollListener(AbsListView.OnScrollListener listener) {
+		this.scrollListener = listener;
 	}
 
 
