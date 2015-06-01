@@ -7,9 +7,14 @@ import java.util.Set;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 
 /**
@@ -18,15 +23,21 @@ import android.widget.BaseAdapter;
  * @author SmileYun
  * @param <T>
  */
-public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListener {
+public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListener, OnClickListener, OnItemSelectedListener,
+		OnItemLongClickListener, OnItemClickListener {
 
 	protected LayoutInflater mInflater;
 	protected Collection<T> mDatas;
 	protected final int mItemLayoutId;
 	protected AbsListView mListView;
 	protected boolean isScrolling;
+	protected AdapterViewHolder viewHolder;
 
 	private AbsListView.OnScrollListener listener;
+	private OnClickListener viewListener;
+	private OnItemClickListener itemClickListener;
+	private OnItemLongClickListener itemLongClickListener;
+	private OnItemSelectedListener itemSelectedListener;
 
 	public KJAdapter(AbsListView listView, Collection<T> datas, int itemLayoutId) {
 		mListView = listView;
@@ -37,6 +48,9 @@ public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListen
 		else
 			mDatas = datas;
 		mListView.setOnScrollListener(this);
+		mListView.setOnItemClickListener(this);
+		mListView.setOnItemLongClickListener(this);
+		mListView.setOnItemSelectedListener(this);
 	}
 
 	@Override
@@ -68,10 +82,10 @@ public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListen
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		final AdapterViewHolder viewHolder = getViewHolder(position, convertView, parent);
-		
+		viewHolder = getViewHolder(position, convertView, parent);
+
 		convert(viewHolder, getItem(position), isScrolling);
-		
+
 		return viewHolder.getConvertView();
 	}
 
@@ -102,7 +116,78 @@ public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListen
 		}
 	}
 
-	public void addOnScrollListener(AbsListView.OnScrollListener l) {
-		this.listener = l;
+	public void setOnScrollListener(AbsListView.OnScrollListener listener) {
+		this.listener = listener;
+	}
+
+	public void setOnItemClickListener(OnItemClickListener listener) {
+		itemClickListener = listener;
+	}
+
+	public void setOnItemLongClickListener(OnItemLongClickListener listener) {
+		itemLongClickListener = listener;
+	}
+
+	public void setOnItemSelectedListener(OnItemSelectedListener listener) {
+		itemSelectedListener = listener;
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		if (itemClickListener != null)
+			itemClickListener.onItemClick(parent, view, position, id);
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+		if (itemSelectedListener != null)
+			itemSelectedListener.onItemSelected(parent, view, position, id);
+	}
+
+	@Override
+	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+		if (itemLongClickListener != null)
+			itemLongClickListener.onItemLongClick(parent, view, position, id);
+		return false;
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		if (itemSelectedListener != null)
+			itemSelectedListener.onNothingSelected(parent);
+	}
+	
+
+	@Override
+	public void onClick(View v) {
+		if (viewListener != null)
+			viewListener.onClick(v);
+	}
+	
+	/**
+	 * Œ™View …Ë÷√ClickListener
+	 */
+	public void setViewClickListener(int id, OnClickListener listener) {
+		View iv = viewHolder.getView(id);
+		iv.setOnClickListener(this);
+	}
+
+
+	public void setListener(AbsListView.OnScrollListener listener) {
+		this.listener = listener;
+	}
+
+
+	public void setItemClickListener(OnItemClickListener itemClickListener) {
+		this.itemClickListener = itemClickListener;
+	}
+
+
+	public void setItemLongClickListener(OnItemLongClickListener itemLongClickListener) {
+		this.itemLongClickListener = itemLongClickListener;
+	}
+
+	public void setItemSelectedListener(OnItemSelectedListener itemSelectedListener) {
+		this.itemSelectedListener = itemSelectedListener;
 	}
 }

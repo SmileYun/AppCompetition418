@@ -5,23 +5,27 @@ import java.util.HashMap;
 
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Adapter;
 import android.widget.ImageView;
 
 import com.idroid.eteach.R;
 import com.idroid.eteach.adapter.MainHomeListViewAdapter;
+import com.idroid.eteach.adapter.internal.KJAdapter;
 import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.MainHomeFragment;
 import com.idroid.eteach.fragment.base.FragmentBase;
 
-public class MainHomeController extends BaseController<FragmentBase> {
+public class MainHomeController extends BaseController<FragmentBase> implements OnClickListener{
 	
 	public interface UI{
 		
 	}
 	
 	private int[] imageLists = { R.drawable.bg_dredge_vip, R.drawable.bg_game_sso, R.drawable.bg_live_head_room };
+	private KJAdapter<HashMap<String,Object>> adapter;
 	
 	public void initialized() {
 		((MainHomeFragment) ui).setViewPageAdapter(new PagerAdapter() {
@@ -51,13 +55,23 @@ public class MainHomeController extends BaseController<FragmentBase> {
 		});
 	}
 	
-	public void setListViewData(AbsListView listView, int ResId){
+	public void setListViewData(AbsListView listView, int resId){
 		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 		for (int i = 0; i < 5; i++) {
 			HashMap<String, Object> m = new HashMap<String, Object>();
 			list.add(m);
 		}
 		
-		((MainHomeFragment) ui).setListAdapter(new MainHomeListViewAdapter(listView, list, ResId));
+		adapter = new MainHomeListViewAdapter(listView, list, resId);
+		adapter.setViewClickListener(R.id.list_item_tv, this);
+		
+		((MainHomeFragment) ui).setListAdapter(adapter);
 	}
+
+	@Override
+	public void onClick(View v) {
+		adapter.notifyDataSetChanged();
+	}
+	
+	
 }

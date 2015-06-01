@@ -42,7 +42,7 @@ public class ActivityBase extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ActivityStackManager.getInstance().addActivity(this);
-		setContentView(R.layout.activity_main);
+		super.setContentView(R.layout.activity_main);
 		initView();
 	}
 

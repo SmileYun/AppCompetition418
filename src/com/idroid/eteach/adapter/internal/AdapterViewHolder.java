@@ -5,7 +5,10 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.AbsListView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -90,6 +93,15 @@ public class AdapterViewHolder {
 		return this;
 	}
 
+	/**
+	 * Œ™View …Ë÷√ClickListener
+	 */
+	public AdapterViewHolder setViewClickListener(int id, OnClickListener listener) {
+		View iv = getView(id);
+		iv.setOnClickListener(listener);
+		return this;
+	}
+	
 	public int getPosition() {
 		return mPosition;
 	}

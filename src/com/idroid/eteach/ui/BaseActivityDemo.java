@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 
 import com.idroid.eteach.R;
 import com.idroid.eteach.adapter.FragmentPagerAdapterDemo;
-import com.idroid.eteach.fragment.FragmentDemo;
 import com.idroid.eteach.fragment.MainHomeFragment;
 import com.idroid.eteach.fragment.MyInformationFragment;
 import com.idroid.eteach.fragment.StudentFragment;
