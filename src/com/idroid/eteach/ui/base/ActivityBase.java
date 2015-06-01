@@ -42,7 +42,7 @@ public class ActivityBase extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ActivityStackManager.getInstance().addActivity(this);
-		setContentView(R.layout.activity_main);
+		super.setContentView(R.layout.activity_main);
 		initView();
 	}
 
@@ -59,6 +59,11 @@ public class ActivityBase extends ActionBarActivity {
 	public void setContentView(View v) {
 		FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mContent.addView(v, p);
+	}
+	
+	public void setContentView(int resId) {
+		FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		mContent.addView(getLayoutInflater().inflate(resId, null));
 	}
 
 	private void setupStatusBarView(Context context, ViewGroup decorViewGroup) {

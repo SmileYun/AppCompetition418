@@ -2,7 +2,9 @@ package com.idroid.eteach.adapter;
 
 import java.util.Collection;
 
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,15 +31,13 @@ public class KJAdapterDemo extends KJAdapter<DataBean>{
 	public void convert(AdapterViewHolder helper, DataBean item, boolean isScrolling) {
 		 helper.setText(R.id.list_item_tv, item.text);
 		 helper.setImageResource(R.id.list_item_img, item.id);
+		 
+		 helper.setViewClickListener(R.id.list_item_tv, this);
 	}
+	
 }
 
 class DataBean {
     String text;
     int id;
-}
-
-class ViewHolder {
-    ImageView img;
-    TextView tv;
 }

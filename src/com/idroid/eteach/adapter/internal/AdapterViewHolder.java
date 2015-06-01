@@ -1,18 +1,14 @@
 package com.idroid.eteach.adapter.internal;
 
-import java.util.HashMap;
-
-import com.idroid.eteach.activity.ContactActivity;
-
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.view.View.OnClickListener;
+import android.widget.AbsListView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -97,8 +93,16 @@ public class AdapterViewHolder {
 		return this;
 	}
 
+	/**
+	 * Œ™View …Ë÷√ClickListener
+	 */
+	public AdapterViewHolder setViewClickListener(int id, OnClickListener listener) {
+		View iv = getView(id);
+		iv.setOnClickListener(listener);
+		return this;
+	}
+	
 	public int getPosition() {
 		return mPosition;
 	}
-	
 }
