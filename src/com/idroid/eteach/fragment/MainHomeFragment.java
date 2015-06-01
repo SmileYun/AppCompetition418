@@ -23,13 +23,15 @@ import com.idroid.eteach.widget.DynamicViewPager;
 public class MainHomeFragment extends FragmentBase implements MainHomeController.UI {
 	private DynamicViewPager mViewPager;
 	private ListView mListView;
+	private MainHomeController mController;
 
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		getController().initialized();
-		getController().setListViewData(mListView, R.layout.listview_item_home);
+		mController = getController();
+		mController.initialized();
+		mController.setListViewData(mListView, R.layout.listview_item_home);
 	}
 
 	@Override
@@ -42,14 +44,14 @@ public class MainHomeFragment extends FragmentBase implements MainHomeController
 		super.onInflate(activity, attrs, savedInstanceState);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	protected MainHomeController getController() {
+	protected <T extends BaseController> T getController() {
 		MainHomeController controller = new MainHomeController();
 		controller.attachedUI(this);
-		return controller;
-	}
+		return (T) controller;
 
+	}
+	
 	public void setViewPageAdapter(PagerAdapter a) {
 		mViewPager.setPagerAdapter(a);
 	}
@@ -81,4 +83,6 @@ public class MainHomeFragment extends FragmentBase implements MainHomeController
 	protected View inflateLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.fragment_mainhome, container, false);
 	}
+
+
 }
