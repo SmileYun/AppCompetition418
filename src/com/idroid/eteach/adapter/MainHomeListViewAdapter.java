@@ -32,4 +32,5 @@ public class MainHomeListViewAdapter extends KJAdapter<HashMap<String, Object>>{
 		
 		
 	}
+	
 }

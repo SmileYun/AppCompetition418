@@ -73,12 +73,12 @@ public class MainHomeController extends BaseController<FragmentBase> implements 
 
 	@Override
 	public void onClick(View v) {
-		Toast.makeText(getContext(), "like", 1).show();
+		Toast.makeText(getContext(), "like", 0).show();
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Toast.makeText(getContext(), "item", 1).show();
+		Toast.makeText(getContext(), "item", 0).show();
 	}
 	
 	
