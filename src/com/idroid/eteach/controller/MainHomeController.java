@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.idroid.eteach.R;
+import com.idroid.eteach.activity.NewsActivity;
 import com.idroid.eteach.adapter.MainHomeListViewAdapter;
 import com.idroid.eteach.adapter.internal.KJAdapter;
 import com.idroid.eteach.controller.base.BaseController;
@@ -23,7 +24,7 @@ import com.idroid.eteach.fragment.MainHomeFragment;
 import com.idroid.eteach.fragment.base.FragmentBase;
 import com.idroid.eteach.ui.DetailFragmentItem;
 
-public class MainHomeController extends BaseController<FragmentBase> implements OnClickListener, OnItemClickListener{
+public class MainHomeController extends BaseController<FragmentBase> implements OnItemClickListener{
 	
 	public interface UI{
 		
@@ -68,20 +69,13 @@ public class MainHomeController extends BaseController<FragmentBase> implements 
 		}
 		
 		adapter = new MainHomeListViewAdapter(listView, list, resId);
-		adapter.setViewClickListener(R.id.item_like_img, this);
 		adapter.setItemClickListener(this);
 		((MainHomeFragment) ui).setListAdapter(adapter);
 	}
 
 	@Override
-	public void onClick(View v) {
-		Toast.makeText(getContext(), "like", 0).show();
-	}
-
-	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Intent i = new Intent();
-		i.setClass(getContext(), DetailFragmentItem.class);
+		Intent i = new Intent(getContext(), NewsActivity.class);
 		getContext().startActivity(i);
 	}
 	
