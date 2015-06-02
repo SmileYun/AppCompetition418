@@ -21,4 +21,8 @@ public abstract class BaseController<U> {
 			return ((FragmentBase) ui).getActivity();
 		return null;
 	}
+	
+	public U getUi() {
+		return ui;
+	}
 }

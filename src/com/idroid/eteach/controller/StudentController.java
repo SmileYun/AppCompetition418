@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.idroid.eteach.R;
 import com.idroid.eteach.activity.ContactActivity;
@@ -17,8 +19,9 @@ import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.StudentFragment;
 import com.idroid.eteach.fragment.TeacherFragment;
 import com.idroid.eteach.fragment.base.FragmentBase;
+import com.idroid.eteach.ui.DetailFragmentItem;
 
-public class StudentController extends BaseController<FragmentBase> implements OnClickListener {
+public class StudentController extends BaseController<FragmentBase> implements OnClickListener, OnItemClickListener {
 
 	private KJAdapter<HashMap<String,Object>> adapter;
 	
@@ -37,8 +40,9 @@ public class StudentController extends BaseController<FragmentBase> implements O
 		}
 		
 		adapter = new StudentAdapter(listView, list, ResId);
-		((StudentFragment)ui).setListAdapter(adapter);
+		adapter.setOnItemClickListener(this);
 		adapter.setViewClickListener(R.id.ibtn_student_contact, this);
+		((StudentFragment)ui).setListAdapter(adapter);
 	}
 
 	@Override
@@ -50,6 +54,13 @@ public class StudentController extends BaseController<FragmentBase> implements O
 	@Override
 	public void initialized() {
 		
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		Intent i = new Intent();
+		i.setClass(getContext(), DetailFragmentItem.class);
+		getContext().startActivity(i);
 	}
 	
 	

@@ -3,6 +3,7 @@ package com.idroid.eteach.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +21,7 @@ import com.idroid.eteach.adapter.internal.KJAdapter;
 import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.MainHomeFragment;
 import com.idroid.eteach.fragment.base.FragmentBase;
+import com.idroid.eteach.ui.DetailFragmentItem;
 
 public class MainHomeController extends BaseController<FragmentBase> implements OnClickListener, OnItemClickListener{
 	
@@ -78,7 +80,9 @@ public class MainHomeController extends BaseController<FragmentBase> implements 
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Toast.makeText(getContext(), "item", 0).show();
+		Intent i = new Intent();
+		i.setClass(getContext(), DetailFragmentItem.class);
+		getContext().startActivity(i);
 	}
 	
 	

@@ -53,6 +53,7 @@
                 android:layout_alignParentRight="true"
                 android:textColor="#ffffff"
                 android:background="@drawable/btn_background"
+                android:focusable="false"
                 android:text="联系我" />
         </RelativeLayout>
     </LinearLayout>

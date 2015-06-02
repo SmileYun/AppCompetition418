@@ -53,6 +53,12 @@ public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListen
 		mListView.setOnItemSelectedListener(this);
 	}
 
+	
+	
+	public void setDatas(Collection<T> mDatas) {
+		this.mDatas = mDatas;
+	}
+
 	@Override
 	public int getCount() {
 		return mDatas.size();
@@ -162,7 +168,9 @@ public abstract class KJAdapter<T> extends BaseAdapter implements OnScrollListen
 
 	@Override
 	public void onClick(View v) {
-		listeners.get(v.getId()).onClick(v);
+		OnClickListener l = listeners.get(v.getId());
+		if(l != null)
+			l.onClick(v);
 	}
 	
 	/**
