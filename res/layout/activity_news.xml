@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <!-- 使用了纵向滚动布局 -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFE7E7E7"
+        android:fadingEdge="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/news_body_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12.0dip"
+                    android:layout_marginRight="12.0dip"
+                    android:layout_marginTop="12.0dip"
+                    android:text="让祖国的花朵在阳光下绽放"
+                    android:textColor="#FF272727"
+                    android:textSize="18.0dip"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/news_body_ptime_source"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12.0dip"
+                    android:layout_marginRight="12.0dip"
+                    android:layout_marginTop="9.0dip"
+                    android:text="来源：人民日报      2015-06-01  23:27:22"
+                    android:textColor="#FF888888"
+                    android:textSize="12.0sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/background_light" />
+            </LinearLayout>
+
+            <!-- 新闻内容显示 -->
+
+
+            <!--
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/list_topic_default_image" />
+
+                <TextView
+                    android:id="@+id/news_body_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5.0dp"
+                    android:text="<STRONG>腾讯文化 姚望 发自俄罗斯莫斯科</STRONG></P><P style="TEXT-INDENT: 2em">从小我们就知道，6月1日是儿童节。实际上，联合国定的国际儿童节是11月20日&#8212;&#8212;这一天，联合国大会通过了《儿童权利公约》。而在中华民国时期，中国的儿童节是在4月4日。</P><P style="TEXT-INDENT: 2em">为什么现在许多国家的儿童节定在6月1日呢？这和苏联有关。</P><P style="TEXT-INDENT: 2em">1949年11月，亲苏的国际民主妇女联合会在巴黎召开大会，将6月1日定为国际保护儿童日。这是1942年6月初，德军枪杀了捷克利迪策村16岁以上的男性公民140余人，并把妇女和90名儿童押往集中营。这些儿童有的被送进毒气室，有的被送给德国家庭抚养。为了让人们不要忘记“利迪策大屠杀”这个日子，国际民主妇女联合会将6月1日定为国际儿童节。当时刚成立不久的中华人民共和国，也和苏东国家一起，认可了这个日子。</P><P style="TEXT-INDENT: 2em">儿童节定下来了。除此之外，在当时的时代背景下，中国还从苏联引进了不少儿童文学作品，一批俄罗斯作家在中国受到欢迎。</P>"
+                    android:textColor="#ff000000" />
+            </LinearLayout>
+            -->
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
