@@ -24,7 +24,7 @@ import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.MainHomeFragment;
 import com.idroid.eteach.fragment.base.FragmentBase;
 
-public class MainHomeController extends BaseController<FragmentBase> implements OnItemClickListener{
+public class MainHomeController extends BaseController<MainHomeFragment> implements OnItemClickListener{
 	
 	public interface UI{
 		
@@ -34,7 +34,7 @@ public class MainHomeController extends BaseController<FragmentBase> implements 
 	private KJAdapter<HashMap<String,Object>> adapter;
 	
 	public void initialized() {
-		((MainHomeFragment) ui).setViewPageAdapter(new PagerAdapter() {
+		getUi().setViewPageAdapter(new PagerAdapter() {
 			
 			@Override
 			public boolean isViewFromObject(View arg0, Object arg1) {

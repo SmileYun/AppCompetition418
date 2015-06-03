@@ -4,42 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-     <EditText
+    <EditText
         android:id="@+id/find_pw_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dip"
+        android:ems="10"
+        android:gravity="center_vertical|left"
         android:hint="注册邮箱"
-        android:gravity="center_vertical|left"
-        android:ems="10"
         android:inputType="textEmailAddress" />
-     
-<EditText
-        android:id="@+id/find_pw_verification"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dip"
-        android:hint="验证码"
-        android:gravity="center_vertical|left" />
-          
-    <EditText
-        android:id="@+id/find_pw_first"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dip"
-        android:hint="新密码"
-        android:gravity="center_vertical|left"
-        android:ems="10"
-        android:inputType="textPassword" />
-    <EditText
-        android:id="@+id/find_pw_sec"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dip"
-        android:hint="确认密码"
-        android:gravity="center_vertical|left"
-        android:ems="10"
-        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/find_pw_btn"
@@ -47,4 +20,5 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dip"
         android:text="提交" />
+
 </LinearLayout>

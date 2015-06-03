@@ -23,7 +23,7 @@ import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.base.FragmentBase;
 import com.idroid.eteach.util.SystemBarConfig;
 
-public class ActivityBase extends ActionBarActivity {
+public class ActivityBase<T extends BaseController> extends ActionBarActivity {
 	/**
 	 * The default system bar tint color value.
 	 */
@@ -37,6 +37,8 @@ public class ActivityBase extends ActionBarActivity {
 
 	private ViewGroup mContent;
 
+	protected T mController;
+
 	/** Activity״̬ */
 	public ActivityState activityState = ActivityState.DESTROY;
 
@@ -46,11 +48,12 @@ public class ActivityBase extends ActionBarActivity {
 		ActivityStackManager.getInstance().addActivity(this);
 		super.setContentView(R.layout.activity_main);
 		initView();
-		if (getController() != null) 
-			getController().attachedUI(this);
+		mController = getController();
+		if (mController != null)
+			mController.attachedUI(this);
 	}
 
-	protected <T extends BaseController> T getController() {
+	protected T getController() {
 		return null;
 	}
 
@@ -68,7 +71,7 @@ public class ActivityBase extends ActionBarActivity {
 		FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mContent.addView(v, p);
 	}
-	
+
 	public void setContentView(View v, FrameLayout.LayoutParams p) {
 		mContent.addView(v, p);
 	}
@@ -120,6 +123,8 @@ public class ActivityBase extends ActionBarActivity {
 	protected void onResume() {
 		super.onResume();
 		activityState = ActivityState.RESUME;
+		if (mController != null)
+			mController.initialized();
 	}
 
 	@Override

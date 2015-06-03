@@ -11,13 +11,11 @@ import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.base.FragmentBase;
 import com.idroid.eteach.ui.base.ActivityBase;
 
-public class LoginActivity extends ActivityBase {
+public class LoginActivity extends ActivityBase<LoginActController> {
 	private final int CONTAINER = 0x01;
 
 	private FrameLayout container;
 	private FragmentTransaction fragmentMangerTransaction;
-
-	private LoginActController mController;
 
 	public static enum EVENTS {
 		REGISTION, FINDPW
@@ -30,10 +28,6 @@ public class LoginActivity extends ActivityBase {
 		container.setId(CONTAINER);
 		FrameLayout.LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		setContentView(container, params);
-
-		mController = getController();
-		mController.attachedUI(this);
-		mController.initialized();
 	}
 
 	public void replaceFragment(FragmentBase f) {
@@ -44,14 +38,12 @@ public class LoginActivity extends ActivityBase {
 
 	@SuppressWarnings("unchecked")
 	public void handleEvent(EVENTS f) {
-		mController.handleEvent(f);
+		 mController.handleEvent(f);
 	}
 
 	@Override
 	protected LoginActController getController() {
-		if (mController == null)
-			return new LoginActController();
-		else
-			return mController;
+		return new LoginActController();
 	}
+
 }

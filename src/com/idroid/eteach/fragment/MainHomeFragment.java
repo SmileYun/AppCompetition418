@@ -67,6 +67,7 @@ public class MainHomeFragment extends FragmentBase<MainHomeController> implement
 
 	@Override
 	protected void bindWidget(View v) {
+		System.out.println(v);
 		mViewPager = (DynamicViewPager) v.findViewById(R.id.viewpager);
 		mListView = (ListView) v.findViewById(R.id.listview);
 //		LayoutParams p =new LayoutParams(LayoutParams.MATCH_PARENT, 300);

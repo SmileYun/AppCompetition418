@@ -11,12 +11,10 @@ import com.idroid.eteach.controller.DetailFragmentItemController;
 import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.ui.base.ActivityBase;
 
-public class DetailFragmentItem extends ActivityBase {
-	
+public class DetailFragmentItem extends ActivityBase<DetailFragmentItemController> {
+
 	private ListView mListView;
-	private DetailFragmentItemController mController;
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,19 +28,18 @@ public class DetailFragmentItem extends ActivityBase {
 		mController.attachedUI(this);
 		mController.initialized();
 	}
-	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+
 	@Override
-	protected <T extends BaseController> T getController() {
-		return (T) new DetailFragmentItemController();
+	protected DetailFragmentItemController getController() {
+		return new DetailFragmentItemController();
 	}
-	
-	public void setAdapter(KJAdapter<HashMap<String, Object>> adapter){
+
+	public void setAdapter(KJAdapter<HashMap<String, Object>> adapter) {
 		mListView.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
 	}
-	
-	public ListView getListView(){
+
+	public ListView getListView() {
 		return mListView;
 	}
 }
