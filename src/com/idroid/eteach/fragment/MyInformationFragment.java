@@ -2,36 +2,37 @@ package com.idroid.eteach.fragment;
 
 import java.util.HashMap;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.idroid.eteach.R;
+import com.idroid.eteach.activity.LoginActivity;
 import com.idroid.eteach.adapter.internal.KJAdapter;
 import com.idroid.eteach.controller.MyInformationController;
-import com.idroid.eteach.controller.TeacherController;
 import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.base.FragmentBase;
 
-public class MyInformationFragment extends FragmentBase implements MyInformationController.UI {
+public class MyInformationFragment extends FragmentBase<MyInformationController> implements MyInformationController.UI, OnClickListener {
 
-	private MyInformationController mController;
 	private ListView mListView;
+	private ImageView portrait;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		mController = getController();
 		// mController.setListViewData(mListView, R.layout.item_teacher);
 	}
 
 	@Override
-	protected <T extends BaseController> T getController() {
+	protected MyInformationController getController() {
 		MyInformationController controller = new MyInformationController();
-		controller.attachedUI(this);
-		return (T) controller;
+		return controller;
 	}
 
 	@Override
@@ -42,6 +43,8 @@ public class MyInformationFragment extends FragmentBase implements MyInformation
 	@Override
 	protected void bindWidget(View v) {
 		// mListView = (ListView) v.findViewById(R.id.ilv_listview);
+		portrait  = (ImageView) v.findViewById(R.id.iiv_user_icon);
+		portrait.setOnClickListener(this);
 	}
 
 	/**
@@ -57,6 +60,13 @@ public class MyInformationFragment extends FragmentBase implements MyInformation
 	 */
 	public void setListAdapter(KJAdapter<HashMap<String, Object>> adapter) {
 		// mListView.setAdapter(adapter);
+	}
+
+	@Override
+	public void onClick(View v) {
+		Intent i = new Intent();
+		i.setClass(getActivity(), LoginActivity.class);
+		getActivity().startActivity(i);
 	}
 
 }

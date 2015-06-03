@@ -46,18 +46,20 @@ public class ActivityBase extends ActionBarActivity {
 		ActivityStackManager.getInstance().addActivity(this);
 		super.setContentView(R.layout.activity_main);
 		initView();
+		if (getController() != null) 
+			getController().attachedUI(this);
 	}
 
-	protected <T extends BaseController> T getController(){
+	protected <T extends BaseController> T getController() {
 		return null;
 	}
-	
+
 	private void initView() {
 		mDecorViewGroup = (ViewGroup) getWindow().getDecorView();
 		mRoot = (ViewGroup) findViewById(R.id.root);
 		mContent = (ViewGroup) findViewById(R.id.content);
 		mContent.setBackgroundColor(Color.TRANSPARENT);
-		
+
 		setupStatusBarView(this, mDecorViewGroup);
 		setTranslucentStatus(true);
 	}
@@ -67,6 +69,10 @@ public class ActivityBase extends ActionBarActivity {
 		mContent.addView(v, p);
 	}
 	
+	public void setContentView(View v, FrameLayout.LayoutParams p) {
+		mContent.addView(v, p);
+	}
+
 	public void setContentView(int resId) {
 		FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mContent.addView(getLayoutInflater().inflate(resId, null));
@@ -99,13 +105,12 @@ public class ActivityBase extends ActionBarActivity {
 		win.setAttributes(winParams);
 	}
 
-	public void changeFragment(int viewResId, FragmentBase fragment){
+	public void changeFragment(int viewResId, FragmentBase fragment) {
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-		ft.replace(viewResId,fragment);
+		ft.replace(viewResId, fragment);
 		ft.commit();
 	}
-	
-	
+
 	@Override
 	protected void onStart() {
 		super.onStart();

@@ -20,17 +20,13 @@ import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.base.FragmentBase;
 import com.idroid.eteach.widget.DynamicViewPager;
 
-public class MainHomeFragment extends FragmentBase implements MainHomeController.UI {
+public class MainHomeFragment extends FragmentBase<MainHomeController> implements MainHomeController.UI {
 	private DynamicViewPager mViewPager;
 	private ListView mListView;
-	private MainHomeController mController;
-
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		mController = getController();
-		mController.initialized();
 //		mController.setListViewData(mListView, R.layout.listview_item_home);
 		mController.setListViewData(mListView, R.layout.listview_item_home_small);
 	}
@@ -46,11 +42,8 @@ public class MainHomeFragment extends FragmentBase implements MainHomeController
 	}
 
 	@Override
-	protected <T extends BaseController> T getController() {
-		MainHomeController controller = new MainHomeController();
-		controller.attachedUI(this);
-		return (T) controller;
-
+	protected MainHomeController getController() {
+		return new MainHomeController();
 	}
 	
 	public void setViewPageAdapter(PagerAdapter a) {
@@ -84,6 +77,4 @@ public class MainHomeFragment extends FragmentBase implements MainHomeController
 	protected View inflateLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.fragment_mainhome, container, false);
 	}
-
-
 }

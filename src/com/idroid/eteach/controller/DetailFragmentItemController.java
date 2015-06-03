@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
+
 import com.idroid.eteach.R;
+import com.idroid.eteach.activity.DetailFragmentItem;
 import com.idroid.eteach.adapter.DetailQAQAdapter;
 import com.idroid.eteach.controller.base.BaseController;
-import com.idroid.eteach.ui.DetailFragmentItem;
 
 public class DetailFragmentItemController extends BaseController<DetailFragmentItem>{
 

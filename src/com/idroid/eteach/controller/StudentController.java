@@ -12,6 +12,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.idroid.eteach.R;
 import com.idroid.eteach.activity.ContactActivity;
+import com.idroid.eteach.activity.DetailFragmentItem;
 import com.idroid.eteach.adapter.StudentAdapter;
 import com.idroid.eteach.adapter.TeacherAdapter;
 import com.idroid.eteach.adapter.internal.KJAdapter;
@@ -19,7 +20,6 @@ import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.StudentFragment;
 import com.idroid.eteach.fragment.TeacherFragment;
 import com.idroid.eteach.fragment.base.FragmentBase;
-import com.idroid.eteach.ui.DetailFragmentItem;
 
 public class StudentController extends BaseController<FragmentBase> implements OnClickListener, OnItemClickListener {
 

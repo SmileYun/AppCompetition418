@@ -1,4 +1,4 @@
-package com.idroid.eteach.ui;
+package com.idroid.eteach.activity;
 
 import java.util.HashMap;
 

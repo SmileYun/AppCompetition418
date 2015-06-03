@@ -1,6 +1,7 @@
 package com.idroid.eteach.activity;
 
 import com.idroid.eteach.R;
+import com.idroid.eteach.ui.base.ActivityBase;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
-public class NewsActivity extends Activity {
+public class NewsActivity extends ActivityBase {
 
 	private WebView webView;
 	
