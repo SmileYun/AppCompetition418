@@ -20,8 +20,10 @@ import com.idroid.eteach.util.UiUtils;
 public class SlidingTabLayout extends HorizontalScrollView {
 
 	public interface TabListener {
+		/** 点击其他选中tab */
 		void onTabSelected(int pos);
 
+		/** 再次点击已选中tab */
 		void onTabReSelected(int pos);
 	}
 
@@ -139,7 +141,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
 		Context context = getContext();
 		ImageView v = new ImageView(context);
 		v.setBackgroundColor(INDICATOR_DEFAULT_BGCOLOR);
-		v.setPadding(UiUtils.dp2px(context, 3), UiUtils.dp2px(context, 9), UiUtils.dp2px(context, 3), UiUtils.dp2px(context, 9));
+		v.setPadding(UiUtils.dp2px(context, 3), UiUtils.dp2px(context, 9), UiUtils.dp2px(context, 3),
+				UiUtils.dp2px(context, 9));
 		v.setImageDrawable(getResources().getDrawable(mPagerAdapter.getTabIndicatorIcon(position)));
 		return v;
 	}
@@ -165,7 +168,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 		public void onPageSelected(int arg0) {
 			swipeSelected();
 
-//			scrollToTab(arg0, 0);
+			// scrollToTab(arg0, 0);
 
 			ImageView selectedPosition = (ImageView) mIconLayout.getChildAt(arg0);
 
@@ -178,6 +181,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
 			if (mViewPagerPageChangeListener != null)
 				mViewPagerPageChangeListener.onPageSelected(arg0);
 
+			if (mTabListener != null) 
+				mTabListener.onTabSelected(arg0);
 		}
 	}
 
@@ -194,7 +199,6 @@ public class SlidingTabLayout extends HorizontalScrollView {
 			for (int i = 0; i < mPagerAdapter.getCount(); i++) {
 				if (v == mIconLayout.getChildAt(i)) {
 					final int previousPos = mViewPager.getCurrentItem();
-					mViewPager.setCurrentItem(i);
 					if (mTabListener != null) {
 						if (previousPos != i) {
 							mTabListener.onTabSelected(i);
@@ -202,6 +206,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 							mTabListener.onTabReSelected(i);
 						}
 					}
+					mViewPager.setCurrentItem(i);
 					return;
 				}
 			}

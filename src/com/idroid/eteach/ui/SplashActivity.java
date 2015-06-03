@@ -52,7 +52,7 @@ public class SplashActivity extends Activity {
 			
 			@Override
 			public void run() {
-				Intent intent = new Intent(SplashActivity.this, BaseActivityDemo.class);
+				Intent intent = new Intent(SplashActivity.this, MainActivity.class);
 				startActivity(intent);
 				//activity之间切换的动画
 				overridePendingTransition(R.anim.activity_in, R.anim.activity_out);

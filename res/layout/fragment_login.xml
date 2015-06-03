@@ -8,21 +8,23 @@
         android:id="@+id/login_username_edt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dip"
+        android:layout_marginTop="20dip"
         android:ems="10"
         android:gravity="center_vertical|left"
         android:hint="用户名"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/login_userpassword_edt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dip"
+        android:layout_marginTop="10dip"
         android:ems="10"
         android:gravity="center_vertical|left"
         android:hint="密码"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:padding="10dp" />
 
     <Button
         android:id="@+id/login_btn"
