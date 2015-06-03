@@ -373,7 +373,6 @@ public class MatrixImageView extends ImageView {
 		 * @return 当前缩放级别小于模板缩放级别时，重置
 		 */
 		private boolean checkRest() {
-			// TODO Auto-generated method stub
 			float[] values = new float[9];
 			getImageMatrix().getValues(values);
 			// 获取当前X轴缩放级别
@@ -440,13 +439,11 @@ public class MatrixImageView extends ImageView {
 
 		@Override
 		public boolean onSingleTapUp(MotionEvent e) {
-			// TODO Auto-generated method stub
 			return super.onSingleTapUp(e);
 		}
 
 		@Override
 		public void onLongPress(MotionEvent e) {
-			// TODO Auto-generated method stub
 			super.onLongPress(e);
 		}
 
@@ -462,13 +459,11 @@ public class MatrixImageView extends ImageView {
 
 		@Override
 		public void onShowPress(MotionEvent e) {
-			// TODO Auto-generated method stub
 			super.onShowPress(e);
 		}
 
 		@Override
 		public boolean onDoubleTapEvent(MotionEvent e) {
-			// TODO Auto-generated method stub
 			return super.onDoubleTapEvent(e);
 		}
 
