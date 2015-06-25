@@ -74,6 +74,15 @@ public class AdapterViewHolder {
 		tv.setText(text);
 		return this;
 	}
+	
+	/**
+	 * 为TextView 设置内容
+	 */
+	public AdapterViewHolder setText(int id, int resId) {
+		TextView tv = (TextView) getView(id);
+		tv.setText(resId);
+		return this;
+	}
 
 	/**
 	 * 为ImageView 设置资源Id

@@ -8,13 +8,12 @@
     <ImageView
         android:id="@+id/iiv_student_icon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/list_photo_default_image" />
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginLeft="5dp"
-        android:layout_height="65dp"
+        android:layout_height="70dp"
         android:orientation="vertical">
 
         <TextView
@@ -33,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:ellipsize="end"
-            android:lines="2"
+            android:lines="3"
             android:text="为了中华民族的今天和明天，我们让少年儿童成长得更好。" />
     </LinearLayout>
 

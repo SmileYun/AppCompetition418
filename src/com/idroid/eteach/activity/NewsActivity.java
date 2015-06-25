@@ -13,12 +13,13 @@ import android.widget.TextView;
 public class NewsActivity extends ActivityBase {
 
 	private WebView webView;
+	private String newsUrl = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news);
-
+		newsUrl = getIntent().getStringExtra("newsUrl");
 		init();
 	}
 
@@ -28,7 +29,7 @@ public class NewsActivity extends ActivityBase {
 	private void init() {
 		webView = (WebView) this.findViewById(R.id.webView);
 		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("http://cul.qq.com/a/20150601/009270.htm");
+		webView.loadUrl(newsUrl);
 
 		webView.setWebViewClient(new WebViewClient() {
 			@Override
