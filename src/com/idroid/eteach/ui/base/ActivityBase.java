@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
@@ -22,7 +23,7 @@ import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.base.FragmentBase;
 import com.idroid.eteach.util.SystemBarConfig;
 
-public class ActivityBase extends ActionBarActivity {
+public class ActivityBase<T extends BaseController> extends ActionBarActivity {
 	/**
 	 * The default system bar tint color value.
 	 */
@@ -36,6 +37,8 @@ public class ActivityBase extends ActionBarActivity {
 
 	private ViewGroup mContent;
 
+	protected T mController;
+
 	/** Activity״̬ */
 	public ActivityState activityState = ActivityState.DESTROY;
 
@@ -45,18 +48,21 @@ public class ActivityBase extends ActionBarActivity {
 		ActivityStackManager.getInstance().addActivity(this);
 		super.setContentView(R.layout.activity_main);
 		initView();
+		mController = getController();
+		if (mController != null)
+			mController.attachedUI(this);
 	}
 
-	protected <T extends BaseController> T getController(){
+	protected T getController() {
 		return null;
 	}
-	
+
 	private void initView() {
 		mDecorViewGroup = (ViewGroup) getWindow().getDecorView();
 		mRoot = (ViewGroup) findViewById(R.id.root);
 		mContent = (ViewGroup) findViewById(R.id.content);
 		mContent.setBackgroundColor(Color.TRANSPARENT);
-		
+
 		setupStatusBarView(this, mDecorViewGroup);
 		setTranslucentStatus(true);
 	}
@@ -65,7 +71,11 @@ public class ActivityBase extends ActionBarActivity {
 		FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mContent.addView(v, p);
 	}
-	
+
+	public void setContentView(View v, FrameLayout.LayoutParams p) {
+		mContent.addView(v, p);
+	}
+
 	public void setContentView(int resId) {
 		FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mContent.addView(getLayoutInflater().inflate(resId, null));
@@ -98,13 +108,12 @@ public class ActivityBase extends ActionBarActivity {
 		win.setAttributes(winParams);
 	}
 
-	public void changeFragment(int viewResId, FragmentBase fragment){
+	public void changeFragment(int viewResId, FragmentBase fragment) {
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-		ft.replace(viewResId,fragment);
+		ft.replace(viewResId, fragment);
 		ft.commit();
 	}
-	
-	
+
 	@Override
 	protected void onStart() {
 		super.onStart();
@@ -114,6 +123,8 @@ public class ActivityBase extends ActionBarActivity {
 	protected void onResume() {
 		super.onResume();
 		activityState = ActivityState.RESUME;
+		if (mController != null)
+			mController.initialized();
 	}
 
 	@Override

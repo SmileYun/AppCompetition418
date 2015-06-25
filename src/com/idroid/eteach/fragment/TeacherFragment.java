@@ -14,25 +14,21 @@ import com.idroid.eteach.controller.TeacherController;
 import com.idroid.eteach.controller.base.BaseController;
 import com.idroid.eteach.fragment.base.FragmentBase;
 
+public class TeacherFragment extends FragmentBase<TeacherController> implements TeacherController.UI {
 
-
-public class TeacherFragment extends FragmentBase implements TeacherController.UI {
-
-	private TeacherController mController;
 	private ListView mListView;
-	
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		mController = getController();
 		mController.setListViewData(mListView, R.layout.item_teacher);
 	}
 
 	@Override
-	protected <T extends BaseController> T getController() {
+	protected TeacherController getController() {
 		TeacherController controller = new TeacherController();
 		controller.attachedUI(this);
-		return (T) controller;
+		return controller;
 	}
 
 	@Override
@@ -49,11 +45,10 @@ public class TeacherFragment extends FragmentBase implements TeacherController.U
 	 * 初始化布局文件
 	 */
 	@Override
-	protected View inflateLayout(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	protected View inflateLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.fragment_teacher, container, false);
 	}
-	
+
 	/**
 	 * 设置LisetView的数据适配
 	 */

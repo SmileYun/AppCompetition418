@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/transparent"
-    tools:context="com.idroid.eteach.ui.BaseActivityDemo" >
+    tools:context="com.idroid.eteach.ui.MainActivity" >
 
     <FrameLayout
         android:id="@+id/root"

@@ -17,23 +17,20 @@ import com.idroid.eteach.fragment.base.FragmentBase;
 
 
 
-public class StudentFragment extends FragmentBase implements StudentController.UI {
+public class StudentFragment extends FragmentBase<StudentController> implements StudentController.UI {
 
-	private StudentController mController;
 	private ListView mListView;
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		mController = getController();
 		mController.setListViewData(mListView, R.layout.item_student_online_text);
 	}
 
 	@Override
-	protected <T extends BaseController> T getController() {
+	protected StudentController getController() {
 		StudentController controller = new StudentController();
-		controller.attachedUI(this);
-		return (T) controller;
+		return controller;
 	}
 
 	@Override

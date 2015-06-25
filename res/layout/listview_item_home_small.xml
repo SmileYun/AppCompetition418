@@ -2,34 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:layout_gravity="center"
-    android:layout_margin="10dp"
-    android:orientation="horizontal" >
-    
+    android:orientation="horizontal"
+    android:padding="10dp" >
+
     <ImageView
-            android:id="@+id/item_portain_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:src="@android:drawable/ic_menu_edit" />
+        android:id="@+id/iiv_student_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/list_photo_default_image" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_height="65dp"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/item_name_tv"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:id="@+id/itv_news_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="15dp"
-            android:paddingEnd="5dp"
-            android:textSize="20sp"
-            android:text="我的提问" />
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="让祖国的花朵在阳光下绽放" />
 
-
-        <ImageView
-            android:id="@+id/item_like_img"
-            android:layout_width="23dp"
-            android:layout_height="23dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/arrow" />
+        <TextView
+            android:id="@+id/itv_news_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:lines="2"
+            android:text="为了中华民族的今天和明天，我们让少年儿童成长得更好。" />
+    </LinearLayout>
 
 </LinearLayout>

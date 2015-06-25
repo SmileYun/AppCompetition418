@@ -3,25 +3,33 @@ package com.idroid.eteach.ui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.idroid.eteach.R;
+import com.idroid.eteach.activity.LoginActivity;
 import com.idroid.eteach.adapter.FragmentPagerAdapterDemo;
+import com.idroid.eteach.app.AppConfiguration;
 import com.idroid.eteach.fragment.MainHomeFragment;
 import com.idroid.eteach.fragment.MyInformationFragment;
 import com.idroid.eteach.fragment.StudentFragment;
 import com.idroid.eteach.fragment.TeacherFragment;
 import com.idroid.eteach.ui.base.ActivityFrame;
+import com.idroid.eteach.widget.SlidingTabLayout.TabListener;
 
-public class BaseActivityDemo extends ActivityFrame{
+public class MainActivity extends ActivityFrame implements TabListener{
 
+	private SharedPreferences sharedPreference;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mViewPager.setAdapter(new FragmentPagerAdapterDemo(getSupportFragmentManager(), initData()));
 		mViewPager.setCurrentItem(1);
 		mSlidingTabLayout.setViewPager(mViewPager);
+		mSlidingTabLayout.setTabListener(this);
 	}
 
 	@Override
@@ -62,4 +70,29 @@ public class BaseActivityDemo extends ActivityFrame{
 
 	int[] TabIcons = { R.drawable.abc_ic_menu_paste_mtrl_am_alpha, R.drawable.abc_ic_menu_share_mtrl_alpha,
 			R.drawable.abc_ic_menu_paste_mtrl_am_alpha, R.drawable.abc_ic_menu_moreoverflow_mtrl_alpha };
+
+	@Override
+	public void onTabSelected(int pos) {
+ 		if(pos != 3)
+			return;
+		sharedPreference = getSharedPreferences(AppConfiguration.SP_LOGIN, MODE_PRIVATE);
+		if(!sharedPreference.getBoolean("isLogin", false)){
+			Intent i = new Intent();
+			i.setClass(this, LoginActivity.class);
+			startActivityForResult(i, 0);
+		}
+	}
+	
+	@Override
+	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
+		if (arg0 == 0 && arg1 == RESULT_OK) {
+			Intent i = new Intent();
+			i.setClass(this, MyInformationFragment.class);
+			startActivity(i);
+		}
+	}
+
+	@Override
+	public void onTabReSelected(int pos) {
+	}
 }
