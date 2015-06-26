@@ -15,6 +15,8 @@ public class DetailFragmentItem extends ActivityBase<DetailFragmentItemControlle
 
 	private ListView mListView;
 
+	private HashMap<String, Object> item;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,9 +26,13 @@ public class DetailFragmentItem extends ActivityBase<DetailFragmentItemControlle
 
 	private void init() {
 		mListView = (ListView) findViewById(R.id.detail_listview);
+		
+		item = (HashMap<String, Object>) getIntent().getSerializableExtra("item");
+		
 		mController = getController();
 		mController.attachedUI(this);
 		mController.initialized();
+		mController.fetchData(item);
 	}
 
 	@Override

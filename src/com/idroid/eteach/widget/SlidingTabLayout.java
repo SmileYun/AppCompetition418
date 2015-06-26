@@ -41,7 +41,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
 	private int mSelectedBackground;
 	private int mTabStripBackground;
-
+	private int mTabStripIndicatorColor;
+	
 	private int mTabViewTextAppearance;
 
 	private int mTabHeight;
@@ -110,6 +111,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
 		mPagerAdapter = (FragmentPagerAdapter) mViewPager.getAdapter();
 
 		mTabStrip = new SlidingTabStrip(getContext());
+		
+		setTabStripIndicatorColor(mTabStripIndicatorColor);
+		
 		LayoutParams titleStripParams = (LayoutParams) mTabStrip.getLayoutParams();
 		if (titleStripParams == null)
 			titleStripParams = new LayoutParams(LayoutParams.MATCH_PARENT, mTabHeight);
@@ -181,7 +185,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 			if (mViewPagerPageChangeListener != null)
 				mViewPagerPageChangeListener.onPageSelected(arg0);
 
-			if (mTabListener != null) 
+			if (mTabListener != null)
 				mTabListener.onTabSelected(arg0);
 		}
 	}
@@ -236,6 +240,23 @@ public class SlidingTabLayout extends HorizontalScrollView {
 		mTabStrip.onViewPagerPageChanged(tabIndex, positionOffset);
 	}
 
+	private  void setTabStripIndicatorColor(int mSelectedBackground) {
+		if (mTabStrip != null)
+			mTabStrip.setSelectedIndicatorColor(mSelectedBackground);
+	}
+	
+	public  void setTabStripColor(int tabStripIndicatorColor) {
+		mTabStripIndicatorColor =	tabStripIndicatorColor;
+	}
+
+	public void setTabSelectedColor(int mSelectedBackground) {
+		this.mSelectedBackground = mSelectedBackground;
+	}
+
+	public void setTabStripBackground(int mTabStripBackground) {
+		this.mTabStripBackground = mTabStripBackground;
+	}
+
 	private void setSelectedTab(int position, float positionOffset) {
 	}
 
@@ -263,9 +284,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
 			mSelectedIndicatorHeight = (int) (DEFAULT_INDICATOR_HEIGHT_DIPS * density);
 			setBackgroundColor(mTabStripBackground);
 			mSelectedIndicatorPaint = new Paint();
+			mSelectedColor = getResources().getColor(R.color.colorAccent);
 		}
 
-		void setSelectedIndicatorColor(int color) {
+		public void setSelectedIndicatorColor(int color) {
 			mSelectedColor = color;
 			invalidate();
 		}
@@ -294,7 +316,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 			float top = 0;
 			float bottom = mSelectedIndicatorHeight;
 
-			mSelectedIndicatorPaint.setColor(Color.RED/* mSelectedColor */);
+			mSelectedIndicatorPaint.setColor(mSelectedColor);
 			canvas.drawRect(left, top, right, bottom, mSelectedIndicatorPaint);
 		}
 	}

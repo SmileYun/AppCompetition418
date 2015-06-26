@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.SaveListener;
 
@@ -86,7 +87,7 @@ class LoginFragmentCotroller extends BaseController<LoginFragment> {
 
 	@Override
 	public void initialized() {
-
+		Bmob.initialize(getUi().getActivity(), "60ef1a964113e7a753dbabbf6d265087");
 	}
 
 	public void login() {
@@ -97,7 +98,7 @@ class LoginFragmentCotroller extends BaseController<LoginFragment> {
 
 			@Override
 			public void onSuccess() {
-				Toast.makeText(getContext(), "Ok, welcome " + getUi().getUserName() + "!", Toast.LENGTH_LONG).show();
+//				Toast.makeText(getContext(), "Ok, welcome " + getUi().getUserName() + "!", Toast.LENGTH_LONG).show();
 			}
 
 			@Override

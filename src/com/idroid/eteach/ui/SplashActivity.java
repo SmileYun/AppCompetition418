@@ -17,6 +17,8 @@ public class SplashActivity extends Activity {
 	private ImageView jiv_loading_welcome;
 	private ImageView jiv_splash_bear;
 	
+	private int TIME = 1500;
+	
 	//Handler延迟
 	private Handler handler = new Handler() {
 		@Override
@@ -43,9 +45,9 @@ public class SplashActivity extends Activity {
 		jiv_splash_bear = (ImageView) this.findViewById(R.id.jiv_splash_bear);
 		
 		//几组图片记录的动画效果
-		AnimationController.fadeIn(jiv_text, 1000, 0);
-		AnimationController.fadeIn(jiv_splash_bear, 1000, 1000);
-		AnimationController.fadeIn(jiv_loading_welcome, 1000, 1500);
+		AnimationController.fadeIn(jiv_text, TIME, 0);
+		AnimationController.fadeIn(jiv_splash_bear, TIME, TIME/3);
+		AnimationController.fadeIn(jiv_loading_welcome, TIME, TIME*2/3);
 		
 		//延迟2s进入主界面
 		handler.postDelayed(new Runnable() {
@@ -58,7 +60,7 @@ public class SplashActivity extends Activity {
 				overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
 				finish();
 			}
-		}, 1200);
+		}, TIME);
 	}
     
 

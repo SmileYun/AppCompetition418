@@ -68,8 +68,8 @@ public class MainActivity extends ActivityFrame implements TabListener{
 		return list;
 	}
 
-	int[] TabIcons = { R.drawable.abc_ic_menu_paste_mtrl_am_alpha, R.drawable.abc_ic_menu_share_mtrl_alpha,
-			R.drawable.abc_ic_menu_paste_mtrl_am_alpha, R.drawable.abc_ic_menu_moreoverflow_mtrl_alpha };
+	int[] TabIcons = { R.drawable.abc_ic_menu_paste_mtrl_am_alpha, R.drawable.user_center_normal_icon,
+			R.drawable.icon_home_friends_1, R.drawable.abc_ic_menu_moreoverflow_mtrl_alpha };
 
 	@Override
 	public void onTabSelected(int pos) {

@@ -22,6 +22,9 @@ public class ActivityFrame extends ActivityBase{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		init();
+		
+		setTabStripBackgroundColor(getResources().getColor(R.color.colorPrimary/*_R*/));
+		setTabSelectedColor(getResources().getColor(R.color.colorAccent/*_R*/));
 	}
 
 	private void init() {
@@ -32,7 +35,21 @@ public class ActivityFrame extends ActivityBase{
 		
 		mSlidingTabLayout = (SlidingTabLayout) v.findViewById(R.id.sliding_tab_layout);
 		
+		mSlidingTabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary/*_R*/));
+		
 		setContentView(v);
+	}
+	
+	protected void setSlidingTabBackgroundColor(int color){
+		mSlidingTabLayout.setBackgroundColor(color);
+	}
+	
+	protected void setTabStripBackgroundColor(int color){
+		mSlidingTabLayout.setTabStripBackground(color);
+	}
+	
+	protected void setTabSelectedColor(int color){
+		mSlidingTabLayout.setTabStripColor(color);
 	}
 	
 }

@@ -28,6 +28,8 @@ public class ActivityBase<T extends BaseController> extends ActionBarActivity {
 	 * The default system bar tint color value.
 	 */
 	public static final int DEFAULT_TINT_COLOR = 0xfa91a7ff;
+	
+	public int mStatusBarBackgroundColor = -1;
 
 	private ViewGroup mDecorViewGroup;
 
@@ -48,6 +50,9 @@ public class ActivityBase<T extends BaseController> extends ActionBarActivity {
 		ActivityStackManager.getInstance().addActivity(this);
 		super.setContentView(R.layout.activity_main);
 		initView();
+		setStatusBarBackgroundColor(getResources().getColor(R.color.colorPrimaryDark/*_R*/));
+		
+		
 		mController = getController();
 		if (mController != null)
 			mController.attachedUI(this);
@@ -86,7 +91,12 @@ public class ActivityBase<T extends BaseController> extends ActionBarActivity {
 		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, new SystemBarConfig(context).getStatusBarHeight());
 		params.gravity = Gravity.TOP;
 		mStatusBarTintView.setLayoutParams(params);
-		mStatusBarTintView.setBackgroundColor(DEFAULT_TINT_COLOR);
+		
+		if(mStatusBarBackgroundColor == -1)
+			mStatusBarTintView.setBackgroundColor(DEFAULT_TINT_COLOR);
+		else
+			mStatusBarTintView.setBackgroundColor(mStatusBarBackgroundColor);
+		
 		mStatusBarTintView.setVisibility(View.VISIBLE);
 		decorViewGroup.addView(mStatusBarTintView);
 	}
@@ -108,6 +118,11 @@ public class ActivityBase<T extends BaseController> extends ActionBarActivity {
 		win.setAttributes(winParams);
 	}
 
+	protected void setStatusBarBackgroundColor(int color){
+		mStatusBarBackgroundColor = color;
+		mStatusBarTintView.setBackgroundColor(mStatusBarBackgroundColor);
+	}
+	
 	public void changeFragment(int viewResId, FragmentBase fragment) {
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		ft.replace(viewResId, fragment);

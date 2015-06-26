@@ -12,9 +12,14 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.Volley;
+import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.idroid.eteach.R;
+import com.idroid.eteach.adapter.StudentAdapter;
 import com.idroid.eteach.ui.base.ActivityBase;
 import com.idroid.eteach.widget.MatrixImageView;
 
@@ -34,6 +39,8 @@ public class ScaleBitmapActivity extends ActivityBase implements OnClickListener
 		int id = intent.getIntExtra("res", -1);
 
 		String path = intent.getStringExtra("path");
+		
+		String url = intent.getStringExtra("url");
 
 		if (id != -1)
 //			img.setBackgroundResource(id);
@@ -43,8 +50,15 @@ public class ScaleBitmapActivity extends ActivityBase implements OnClickListener
 			Bitmap bm = BitmapFactory.decodeFile(path, new Options());
 			img.setImageBitmap(bm);
 		}
-
-//		img.setOnClickListener(this);
+		
+		if (url != null && !url.equals("")) {
+			ImageListener listener = ImageLoader.getImageListener(img,
+					R.drawable.scale_act_default, R.drawable.scale_act_default);
+			
+			ImageLoader loader = new ImageLoader(Volley.newRequestQueue(this), new StudentAdapter.BitmapCache());
+			loader.get(url , listener);
+			LayoutParams p = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+		}
 	}
 
 	//一下代码无用
@@ -73,7 +87,6 @@ public class ScaleBitmapActivity extends ActivityBase implements OnClickListener
 			drawable.draw(canvas);
 		}
 		
-		System.out.println("---" + bitmap.getWidth());
 		
 		if(!big){
 			big = !false;

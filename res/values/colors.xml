@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-     <color name="colorPrimaryDark">#5677fc</color>
+     
+     <color name="colorPrimaryDark">#1976D2</color>
+     <color name="colorPrimary">#2196F3</color>
+     <color name="colorAccent">#4CAF50</color>
+     <color name="colorText">#FFFFFF</color>
+     <color name="colorPrimaryText">#212121</color>
+	<color name="colorSecondeText">#727272</color>
+     
+	
+	<!-- 方案二 -->
+	<color name="colorPrimaryDark_R">#C2185B</color>
+     <color name="colorPrimary_R">#E91E63</color>
+     <color name="colorAccent_R">#FF4081</color>
+     <color name="colorText_R">#FFFFFF</color>
+     <color name="colorPrimaryText_R">#212121</color>
+	<color name="colorSecondeText_R">#727272</color>
+     
+     
      <color name="slidingTabLayout_background">#91a7ff</color>
      <color name="slidingTabLayout_selectedColor">#5677fc</color>
      
+     <color name="TintBarColor">#127ee8</color>
+     <color name="FontImpColor">#1a1a1a</color>
 </resources>

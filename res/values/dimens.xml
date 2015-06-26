@@ -4,4 +4,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="navigationIconSize">40dp</dimen>
+    <dimen name="slideIconSize">46dp</dimen>
+    
 </resources>

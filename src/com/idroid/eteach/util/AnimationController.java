@@ -63,7 +63,6 @@ public class AnimationController {
 	}
 
 	/**
-	 * 带插入器，我想应该是类似于左右摆动那种执行函数曲线的动画
 	 * @param animation
 	 * @param interpolatorType
 	 * @param durationMillis

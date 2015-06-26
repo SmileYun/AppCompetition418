@@ -52,9 +52,9 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/btn_background"
-                android:text="联系我"
                 android:descendantFocusability="beforeDescendants"
                 android:focusable="false"
+                android:text="联系我"
                 android:textColor="#ffffff" />
         </RelativeLayout>
     </LinearLayout>
@@ -73,27 +73,29 @@
 
         <ImageView
             android:id="@+id/iiv_student_ques_icon"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
             android:src="@drawable/default_student_quess" />
-        
+
         <TextView
-            android:layout_marginLeft="5dp"
             android:id="@+id/itv_student_ques_text"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:lines="4"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="center_vertical"
+            android:lines="4"
             android:text="如图所示，求解方程组的解，请问学长学姐这个问题有几种解答？如果不用线性方程组，还能使用哪些方法呢？" />
     </LinearLayout>
-    
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
         android:background="@android:color/background_light" />
-    
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -101,25 +103,25 @@
         android:layout_marginTop="5dp" >
 
         <TextView
-            android:padding="3dp"
             android:id="@+id/itv_student_class"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:background="@drawable/text_shape"
+            android:padding="3dp"
             android:text="数学" />
 
         <TextView
             android:id="@+id/itv_student_addr"
-            android:layout_gravity="end"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:singleLine="true"
+            android:layout_gravity="end"
             android:ellipsize="end"
             android:maxEms="9"
+            android:singleLine="true"
             android:text="重庆市南岸区重庆邮电大学" />
     </RelativeLayout>
 
