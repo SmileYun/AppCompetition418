@@ -21,6 +21,9 @@ public class MainHomeListViewAdapter extends KJAdapter<HashMap<String, Object>>{
 	@Override
 	public void convert(AdapterViewHolder helper, HashMap<String, Object> item, boolean isScrolling) {
 		//R.layout.listview_item_home 对应视图
+		helper.setText(R.id.itv_news_title, Integer.parseInt(item.get("title").toString()));
+		helper.setText(R.id.itv_news_content, Integer.parseInt(item.get("digest").toString()));
+		helper.setImageResource(R.id.iiv_student_icon, Integer.parseInt(item.get("iconId").toString()));
 //		helper.setText(R.id.item_name_tv, "yun");
 //		helper.setText(R.id.item_posttime_tv, "1分钟前");
 //		helper.setText(R.id.item_subcontent_tv, "对问题的描述为....");

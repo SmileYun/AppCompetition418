@@ -4,5 +4,19 @@
     <string name="app_name">ETeach</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    
+    <string name="news_title_0">今天我们不关注高考状元</string>
+    <string name="news_title_1">关于梦想还有失败</string>
+    <string name="news_title_2">蔡元培：几乎没有一日不读点书，然而却没有什么成就</string>
+    <string name="news_title_3">黄冈中学30年辉煌不再 高考本就不需要神话</string>
+    <string name="news_title_4">算一算，高考真实录取率到底有多低？</string>
+    <string name="news_title_5">什么样的孩子更容易获得高学历</string>
+    
+    <string name="news_digest_0">今天部分省份的考分出炉了，看了以下的例子你就会知道，不止高考状元值得关注。</string>
+    <string name="news_digest_1">关于梦想，记得自己在高2的时候，看到霍金写的时间简史，一顿狂读，自认为自己读懂了。</string>
+    <string name="news_digest_2">我自十余岁起，就开始读书。读到现在，将满六十年了，中间除大病或其他特别原因外，几乎没有一日不读点书的。</string>
+    <string name="news_digest_3">黄冈中学曾被誉为高中教育“神话”，高升学率、高获奖率给这座位于鄂东大别山区的城市带来无尽的荣耀。</string>
+    <string name="news_digest_4">最近几天恰逢高考，朋友圈里不断刷新一个段子。段子里给了两排名单，一排是科举状元，一排是名人，然后告诉大家，文化名人落榜了却被记住了。</string>
+    <string name="news_digest_5">在比利时，人均的高等教育资源相对丰富，除了报考医科和牙医需要参加额外入学考试以外，大多数完成了普通中等教育（ASO）和技术中等教育（TSO）的孩子都能直接进入大学学习。</string>
 
 </resources>
