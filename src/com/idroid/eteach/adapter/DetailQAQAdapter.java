@@ -32,10 +32,10 @@ public class DetailQAQAdapter extends KJAdapter<HashMap<String, Object>> {
 	public static final String QAQIMGPATH = "imgspath";
 	private RequestQueue mQueue;
 	private ImageLoader loader;
-	
+
 	public DetailQAQAdapter(AbsListView listView, Collection<HashMap<String, Object>> datas, int itemLayoutId) {
 		super(listView, datas, itemLayoutId);
-//		simulateData();
+		// simulateData();
 		mQueue = Volley.newRequestQueue(listView.getContext());
 		loader = new ImageLoader(mQueue, new StudentAdapter.BitmapCache());
 	}
@@ -43,23 +43,30 @@ public class DetailQAQAdapter extends KJAdapter<HashMap<String, Object>> {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void convert(AdapterViewHolder helper, HashMap<String, Object> item, boolean isScrolling) {
-//		helper.setText(R.id.detail_context_text, (String) item.get(CONTEXT));
-		helper.setText(R.id.detail_context_text, (String) item.get("Content"));
+		if (item.get("type") == null) {
+			// helper.setText(R.id.detail_context_text, (String)
+			// item.get(CONTEXT));
+			helper.setText(R.id.detail_context_text, (String) item.get("Content"));
 
-		ArrayList<Integer> imgs = (ArrayList<Integer>) item.get(QAQIMGRESID);
-		ArrayList<String> imgspath = (ArrayList<String>) item.get(QAQIMGPATH);
-		
-		if(item.get("ContentImg") != null){
-			LinearLayout container = (LinearLayout) helper.getView(R.id.detail_context_img_wrap);
-			addImgs(container, (String) item.get("ContentImg"));
-			return;
+			ArrayList<Integer> imgs = (ArrayList<Integer>) item.get(QAQIMGRESID);
+			ArrayList<String> imgspath = (ArrayList<String>) item.get(QAQIMGPATH);
+
+			if (item.get("ContentImg") != null) {
+				LinearLayout container = (LinearLayout) helper.getView(R.id.detail_context_img_wrap);
+				addImgs(container, (String) item.get("ContentImg"));
+				return;
+			}
+
+			if (imgs != null && imgs.size() > 0)
+				addImgs((LinearLayout) helper.getView(R.id.detail_context_img_wrap), imgs);
+
+			if (imgspath != null && imgspath.size() > 0)
+				addImgsPath((LinearLayout) helper.getView(R.id.detail_context_img_wrap), imgspath);
+		} else {
+			helper.setText(R.id.detail_context_text, (String) item.get("Content"));
+			helper.setText(R.id.itv_student_name, (String) item.get("name"));
+			helper.setText(R.id.itv_student_date, "2小时之前");
 		}
-
-		if (imgs != null && imgs.size() > 0)
-			addImgs((LinearLayout) helper.getView(R.id.detail_context_img_wrap), imgs);
-
-		if (imgspath != null && imgspath.size() > 0)
-			addImgsPath((LinearLayout) helper.getView(R.id.detail_context_img_wrap), imgspath);
 	}
 
 	private void addImgsPath(LinearLayout container, ArrayList<String> imgspath) {
@@ -78,61 +85,61 @@ public class DetailQAQAdapter extends KJAdapter<HashMap<String, Object>> {
 		for (int i : resDatas) {
 			ImageView img = new ImageView(mListView.getContext());
 			img.setOnClickListener(this);
-//			img.setImageBitmap(BitmapFactory.decodeResource(mListView.getContext().getResources(), i));
+			// img.setImageBitmap(BitmapFactory.decodeResource(mListView.getContext().getResources(),
+			// i));
 			img.setBackgroundResource(i);
 			img.setTag(i);
-			LayoutParams p = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-			container.addView(img,p);
+			LayoutParams p = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			container.addView(img, p);
 		}
 	}
-	
+
 	private void addImgs(LinearLayout container, String url) {
 		container.removeAllViews();
-			ImageView img = new ImageView(mListView.getContext());
-			img.setOnClickListener(this);
-			ImageListener listener = ImageLoader.getImageListener(img,
-					R.drawable.default_student_quess, R.drawable.default_student_quess);
-			loader.get(url , listener);
-			img.setTag(url);
-			LayoutParams p = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-			container.addView(img,p);
+		ImageView img = new ImageView(mListView.getContext());
+		img.setOnClickListener(this);
+		ImageListener listener = ImageLoader.getImageListener(img, R.drawable.default_student_quess,
+				R.drawable.default_student_quess);
+		loader.get(url, listener);
+		img.setTag(url);
+		LayoutParams p = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		container.addView(img, p);
 	}
 
-
 	void simulateData() {
-		String s = "如图所示，求解方程组的解，请问学长学姐这个问题有几种解答？如果不用线性方程组，还能使用哪些方法呢？" ;
+		String s = "如图所示，求解方程组的解，请问学长学姐这个问题有几种解答？如果不用线性方程组，还能使用哪些方法呢？";
 		for (int i = 0; i < 8; i++) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put(CONTEXT, s);
 			ArrayList<Integer> imgs = new ArrayList<Integer>();
-			if(i % 2 == 0){
+			if (i % 2 == 0) {
 				imgs.add(R.drawable.bg_dredge_vip);
 				imgs.add(R.drawable.bg_game_sso);
-			}else {
+			} else {
 				imgs.add(R.drawable.bg_live_head_room);
 				imgs.add(R.drawable.actionbar_liked);
 			}
-			
+
 			map.put(QAQIMGRESID, imgs);
 			mDatas.add(map);
 		}
 	}
-	
+
 	@Override
 	public void onClick(View v) {
 		super.onClick(v);
-		
+
 		Intent i = new Intent();
 		i.setClass(mListView.getContext(), ScaleBitmapActivity.class);
 		Object o = v.getTag();
-		if(o instanceof Integer)
-			i.putExtra("res", (Integer)o);
+		if (o instanceof Integer)
+			i.putExtra("res", (Integer) o);
 		else if (o instanceof Bitmap)
-			i.putExtra("path", (Bitmap)o);
+			i.putExtra("path", (Bitmap) o);
 		else
-			i.putExtra("url", (String)o);
-		
+			i.putExtra("url", (String) o);
+
 		mListView.getContext().startActivity(i);
 	}
-	
+
 }
